@@ -1,0 +1,90 @@
+///
+/// Frontend styles
+///
+
+@import 'modules/_root';
+@import 'partials/_tabs';
+@import 'partials/_author-box';
+@import 'partials/_profile';
+@import 'partials/_profile-one';
+@import 'partials/_profile-two';
+@import 'partials/_profile-three';
+@import 'partials/_profile-four';
+@import 'partials/_profile-no-cover';
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.clearfix {
+	clear: both !important;
+	width: 100%;
+	height: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.social-icon {
+	position: var( --upro-icon--position );
+	display: var( --upro-icon--display, inline-block );
+	width: var( --upro-icon--width, var( --upro-icon--size, 1em ) );
+	height: var( --upro-icon--height, var( --upro-icon--size, 1em ) );
+	vertical-align: baseline;
+	line-height: var( --upro-icon--line-height, 1 );
+	background-color: var( --upro-icon--bg-color );
+	color: var( --upro-icon--text-color, inherit );
+
+	svg {
+		fill: currentColor;
+	}
+}
+
+.user-profile-socials-list {
+	list-style: none;
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.5em 0.5em;
+	margin: 0;
+	line-height: 1;
+	font-size: 1.125rem;
+}
+
+///
+/// Users lists
+///
+.has-avatars {
+	.user-list-entry {
+		margin: var( --upro-user-list--entry--margin, 0.325em 0 );
+	}
+}
+
+.user-list-avatar {
+	margin: var( --upro-user-list--avatar--wrap--margin, 0 0.5em 0 0 );
+
+	img {
+		vertical-align: var( --upro-user-list--avatar--vertical-align, middle );
+	}
+}
+
+///
+/// Sidebar widget
+///
+.author-widget-figure {
+	margin-top: 1rem;
+}
+
+.plugin {
+	.user-profile-socials-list {
+		margin: 0;
+	}
+}

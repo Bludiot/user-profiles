@@ -1,0 +1,75 @@
+///
+/// Profile page style #2
+///
+
+.profile-style-two {
+	margin: var( --upro-profile-2--margin, var( --upro-profile--margin ) );
+	padding: var( --upro-profile-2--padding, var( --upro-profile--padding ) );
+
+	.profile-page-header {
+
+		.profile-header-inner {
+			flex-direction: var( --upro-profile-2--header-inner--flex-direction, row );
+		}
+
+		.profile-cover {
+			&.in-form-preview {
+				height: 200px;
+
+				img {
+					max-height: 200px;
+				}
+			}
+		}
+
+		.profile-intro {
+			flex-direction: var( --upro-profile-2--intro--flex-direction, var( --upro-profile--intro--flex-direction ) );
+			justify-content: var( --upro-profile-2--intro--justify-content, var( --upro-profile--intro--justify-content ) );
+		}
+
+		.profile-avatar {
+			transform: var( --upro-profile-2--avatar--transform, var( --upro-profile--avatar--transform ) );
+
+			&.in-form-preview {
+				transform: translateY( 50% );
+			}
+		}
+	}
+
+	@media screen and ( max-width: 640px ) {
+		margin: var( --upro-profile-4--margin, var( --upro-profile--margin ) );
+		padding: var( --upro-profile-4--padding, var( --upro-profile--padding ) );
+
+		.profile-page-header {
+			margin: var( --upro-profile-4--header--margin, 1rem 0 3rem 0 );
+
+			.profile-header-inner {
+				flex-direction: var( --upro-profile-4--header-inner--flex-direction, column );
+				justify-content: var( --upro-profile-4--header-inner--justify-content, space-between );
+				align-items: var( --upro-profile-4--header-inner--align-items, center );
+				gap: 0;
+			}
+
+			.profile-cover {
+				height: 100%;
+				height: 400px;
+
+				img {
+					max-height:400px;
+				}
+			}
+
+			.profile-intro {
+				flex-direction: var( --upro-profile-4--intro--flex-direction, var( --upro-profile--intro--flex-direction ) );
+				text-align: var( --upro-profile-4--intro--text-align, center );
+			}
+
+			.profile-avatar {
+				position: absolute;
+				bottom: -2rem;
+				max-width: var( --upro-profile-4--avatar--width, 160px );
+				transform: var( --upro-profile-4--avatar--transform, none );
+			}
+		}
+	}
+}

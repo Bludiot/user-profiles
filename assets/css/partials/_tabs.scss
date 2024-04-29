@@ -1,0 +1,156 @@
+///
+/// Tabbed content
+///
+
+.nav-tabs {
+	list-style: none;
+	width: var( --upro-tabs--list--width, 100% );
+	height: var( --upro-tabs--list--height );
+	max-width: var( --upro-tabs--list--max-width );
+	max-height: var( --upro-tabs--list--max-height );
+	display: flex; // No need to modify.
+	flex-direction: var( --upro-tabs--list--flex-direction, row );
+	align-items: var( --upro-tabs--list--align-items );
+	justify-content: var( --upro-tabs--list--justify-content );
+	flex-wrap: var( --upro-tabs--list--flex-wrap, wrap );
+	gap: var( --upro-tabs--list--gap );
+	margin: var( --upro-tabs--list--margin );
+	padding: var( --upro-tabs--list--padding );
+	border: var( --upro-tabs--list--border-style ) var( --upro-tabs--list--border-width ) var( --upro-tabs--list--border-color );
+	border-bottom: var( --upro-tabs--list--border-bottom-style ) var( --upro-tabs--list--border-bottom-width ) var( --upro-tabs--list--border-bottom-color );
+	background-color: var( --upro-tabs--list--bg-color );
+	color: var( --upro-tabs--list--text-color );
+
+	@media ( prefers-color-scheme: dark ) {
+		border-color: var( --upro-tabs--list--border-color--dark );
+		border-bottom-color: var( --upro-tabs--list--border-bottom-color--dark );
+		background-color: var( --upro-tabs--list--bg-color--dark );
+		color: var( --upro-tabs--list--text-color--dark );
+	}
+
+	.nav-item {
+		display: var( --upro-tabs--list--item--display, inline-block );
+		margin: var( --upro-tabs--list--item--margin );
+		padding: var( --upro-tabs--list--item--padding );
+		background-color: var( --upro-tabs--list--bg-color );
+
+		// Tabs bottom border to cover list bottom border.
+		transform: translateY( var( --upro-tabs--list--border-bottom-width ) );
+	}
+
+	.nav-link {
+		display: var( --upro-tabs--list--link--display, block );
+		margin: var( --upro-tabs--list--link--margin, 0 0 0 0 );
+		padding: var( --upro-tabs--list--link--padding, 0.75rem 1rem );
+		font-family: var( --upro-tabs--list--link--font-family, var( --cfe-display--font-family ) );
+		font-size: var( --upro-tabs--list--link--font-size, var( --upro-body--font-size, inherit ) );
+		font-weight: var( --upro-tabs--list--link--font-weight, var( --cfe-display--font-weight ) );
+		font-style: var( --upro-tabs--list--link--font-style, normal );
+		font-variant: var( --upro-tabs--list--link--font-variant );
+		text-decoration: var( --upro-tabs--list--link--text-decoration, none );
+		text-transform: var( --upro-tabs--list--link--text-transform, capitalize );
+		letter-spacing: var( --upro-tabs--list--link--letter-spacing, var( --cfe-display--letter-spacing ) );
+		word-spacing: var( --upro-tabs--list--link--word-spacing, normal );
+		white-space: var( --upro-tabs--list--link--text-transform );
+		word-break: var( --upro-tabs--list--link--text-transform );
+		line-height: var( --upro-tabs--list--link--line-height, 1 );
+		border: var( --upro-tabs--list--link--border-style ) var( --upro-tabs--list--link--border-width ) var( --upro-tabs--list--link--border-color );
+		border-top-left-radius: var( --upro-tabs--list--corner-radius, 0.25rem );
+		border-top-right-radius: var( --upro-tabs--list--corner-radius, 0.25rem );
+		background-color: var( --upro-tabs--list--link--bg-color, var( --upro-body--bg-color ) );
+		color: var( --upro-tabs--list--link--text-color, var( --upro-body--text-color ) );
+
+		@media ( prefers-color-scheme: dark ) {
+			border-color: var( --upro-tabs--list--link--border-color--dark );
+			background-color: var( --upro-tabs--list--link--bg-color--dark, var( --upro-body--bg-color--dark ) );
+			color: var( --upro-tabs--list--link--text-color--dark );
+		}
+
+		&:hover,
+		&:focus {
+			isolation: isolate;
+			border-color: var( --upro-tabs--list--link--action--border-color, var( --upro-tabs--list--link--border-color ) );
+			background-color: var( --upro-tabs--list--link--action--bg-color );
+			color: var( --upro-tabs--list--link--action--text-color );
+
+			@media ( prefers-color-scheme: dark ) {
+				border-color: var( --upro-tabs--list--link--action--border-color--dark, var( --upro-tabs--list--link--border-color--dark ) );
+				background-color: var( --upro-tabs--list--link--action--bg-color--dark );
+				color: var( --upro-tabs--list--link--action--text-color--dark, var( --upro-tabs--list--link--text-color--dark ) );
+			}
+		}
+
+		&.disabled {
+			pointer-events: none;
+			cursor: not-allowed;
+		}
+	}
+
+	.nav-link.active,
+	.nav-item.active .nav-link,
+	.nav-item.show .nav-link {
+		border: var( --upro-tabs--list--link--border-style ) var( --upro-tabs--list--link--border-width ) var( --upro-tabs--list--link--border-color );
+		border-bottom-color: var( --upro-body--bg-color, var( --cfe-body--bg-color, #ffffff ) );
+		background-color: var( --upro-body--bg-color );
+		color: var( --upro-tabs--list--link--active--text-color );
+		cursor: default;
+
+		@media ( prefers-color-scheme: dark ) {
+			border: var( --upro-tabs--list--link--border-style ) var( --upro-tabs--list--link--border-width ) var( --upro-tabs--list--link--border-color--dark );
+			border-bottom-color: var( --upro-body--bg-color--dark );
+			background-color: var( --upro-body--bg-color--dark );
+			color: var( --upro-tabs--list--link--active--text-color--dark );
+		}
+	}
+
+	.dropdown-menu {
+		margin-top: -1px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}
+
+.dark-mode .nav-tabs {
+	border-color: var( --upro-tabs--list--border-color--dark );
+	border-bottom-color: var( --upro-tabs--list--border-bottom-color--dark );
+	background-color: var( --upro-tabs--list--bg-color--dark );
+	color: var( --upro-tabs--list--text-color--dark );
+
+	.nav-link {
+		border-color: var( --upro-tabs--list--link--border-color--dark );
+		background-color: var( --upro-tabs--list--link--bg-color--dark, var( --upro-body--bg-color--dark ) );
+		color: var( --upro-tabs--list--link--text-color--dark );
+
+		&:hover,
+		&:focus {
+			border-color: var( --upro-tabs--list--link--action--border-color--dark, var( --upro-tabs--list--link--border-color--dark ) );
+			background-color: var( --upro-tabs--list--link--action--bg-color--dark );
+			color: var( --upro-tabs--list--link--action--text-color--dark, var( --upro-tabs--list--link--text-color--dark ) );
+		}
+	}
+
+	.nav-link.active,
+	.nav-item.active .nav-link,
+	.nav-item.show .nav-link {
+		border: var( --upro-tabs--list--link--border-style ) var( --upro-tabs--list--link--border-width ) var( --upro-tabs--list--link--border-color--dark );
+		border-bottom-color: var( --upro-body--bg-color--dark );
+		background-color: var( --upro-body--bg-color--dark );
+		color: var( --upro-tabs--list--link--active--text-color--dark );
+	}
+}
+
+.tab-content {
+
+	.tab-pane {
+		display: none;
+		padding: var( --upro-tabs--content--pane--padding, 1rem 0 0 0 );
+
+		&.active {
+			display: var( --upro-tabs--content--pane--active--display, block );
+		}
+
+		.text-uppercase {
+			text-transform: none !important;
+		}
+	}
+}

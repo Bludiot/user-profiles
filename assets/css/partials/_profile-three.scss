@@ -1,0 +1,62 @@
+///
+/// Profile page style #3
+///
+
+.profile-style-three {
+	margin: var( --upro-profile-3--margin, var( --upro-profile--margin ) );
+	padding: var( --upro-profile-3--padding, var( --upro-profile--padding ) );
+
+	&.in-form-preview {
+		margin-top: 3rem;
+	}
+
+	.profile-page-header {
+		margin: var( --upro-profile-3--header--margin, 1rem 0 2rem 0 );
+
+		.profile-header-inner {
+			flex-direction: var( --upro-profile-3--header-inner--flex-direction, column-reverse );
+			justify-content: var( --upro-profile-3--header-inner--justify-content, space-between );
+			align-items: var( --upro-profile-3--header-inner--align-items, center );
+			gap: 0;
+		}
+
+		.profile-cover {
+			height: 100%;
+			height: 320px;
+
+			img {
+				max-height: 320px;
+			}
+
+			&.in-form-preview {
+				height: 240px;
+
+				img {
+					max-height: 240px;
+				}
+			}
+		}
+
+		.profile-intro {
+			flex-direction: var( --upro-profile-3--intro--flex-direction, var( --upro-profile--intro--flex-direction ) );
+			text-align: var( --upro-profile-3--intro--text-align, center );
+		}
+
+		.profile-avatar {
+			position: absolute;
+			top: -2rem;
+			max-width: var( --upro-profile-3--avatar--width, 160px );
+			transform: var( --upro-profile-3--avatar--transform, none );
+		}
+	}
+
+	@media screen and ( max-width: 640px ) {
+		.profile-cover {
+			height: 400px;
+
+			img {
+				max-height:400px;
+			}
+		}
+	}
+}

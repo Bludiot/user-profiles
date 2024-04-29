@@ -1,0 +1,133 @@
+///
+/// Backend styles
+///
+
+@import 'modules/_root';
+@import 'partials/_profile';
+@import 'partials/_profile-one';
+@import 'partials/_profile-two';
+@import 'partials/_profile-three';
+@import 'partials/_profile-four';
+
+.tab-section-heading {
+	margin: 0;
+}
+
+.avatar {
+	border-radius: 50%;
+}
+
+.accordion-container {
+	margin-top: 1rem;
+}
+
+.accordion-section {
+
+	&:not( :first-of-type ) {
+		border-top: solid 1px rgba( $color: black, $alpha: 0.3 );
+
+		@media ( prefers-color-scheme: dark ) {
+			border-color: rgba( $color: white, $alpha: 0.3 );
+		}
+	}
+
+	.accordion-section-title {
+		cursor: pointer;
+		user-select: none !important;
+		margin: 0;
+		padding: 1rem 0;
+	}
+
+	h3.accordion-section-title {
+		font-size: 1.125rem;
+	}
+
+	.accordion-title-icon {
+		transform: rotate( 0deg );
+
+		// Same speed as accordion slide in the JavaScript.
+		transition: transform 250ms;
+	}
+
+	&:not( .open ) {
+		.accordion-section-content {
+			display: none;
+		}
+	}
+
+	&:hover {
+		.accordion-title-icon {
+			opacity: 1;
+		}
+	}
+
+	&.open {
+		.accordion-title-icon {
+			opacity: 1;
+			transform: rotate( -180deg );
+		}
+	}
+
+	.upro-form-details-section {
+		display: flex;
+		gap: 0 1rem;
+		width: 100%;
+		padding: 1rem 0;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.upro-form-details-avatar {
+		display: block;
+		width: 100%;
+		max-width: 80px;
+		height: auto;
+	}
+}
+
+.default-avatar-preview {
+	margin-top: 1rem;
+
+	img {
+		border: solid 1px rgba( $color: black, $alpha: 0.3 );
+
+		@media ( prefers-color-scheme: dark ) {
+			border-color: rgba( $color: white, $alpha: 0.3 );
+		}
+	}
+}
+
+// Image albums/select.
+.image-select-list {
+	list-style: none;
+	width: 100%;
+	margin: 1rem 0 0 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+
+	li {
+		order: 2;
+		display: block;
+		position: relative;
+		width: 80px;
+		height: 80px;
+
+		&.selected {
+			order: 1;
+		}
+	}
+}
+
+#header-preview-list {
+	list-style: none;
+	margin: 2rem 0 0 0;
+	padding: 0;
+
+	li {
+		max-width: 320px;
+	}
+}

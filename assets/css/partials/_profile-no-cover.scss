@@ -1,0 +1,35 @@
+///
+/// Profile page style no cover
+///
+
+.profile-page {
+	.profile-page-header-no-cover {
+		width: 100%;
+		max-width: 100%;
+		display: var( --upro-profile--header-inner--display, flex );
+		flex-direction: row;
+		align-items: center;
+		gap: var( --upro-profile--header-inner--gap, 2rem );
+
+		.profile-avatar {
+			img {
+				max-width: var( --upro-profile--avatar--width );
+			}
+		}
+
+		.profile-intro {
+			h1,
+			h2,
+			p {
+				margin: 0;
+			}
+		}
+	}
+
+	@media screen and ( max-width: 640px ) {
+		.profile-page-header-no-cover {
+			flex-direction: column-reverse;
+			align-items: flex-start;
+		}
+	}
+}

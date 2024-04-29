@@ -1,0 +1,42 @@
+///
+/// Define variables
+///
+
+:root {
+	--upro-profile--avatar--width: 160px;
+	--upro-profile--avatar--border-radius: 10%;
+
+	--upro-profile--header--margin: 0 0 var( --upro-profile--header--margin-bottom, 4rem ) 0;
+	--upro-profile--header--padding: 0;
+
+	--upro-profile--avatar--transform: translateY( 6rem );
+
+	--upro-profile--intro--display: flex;
+	--upro-profile--intro--flex-direction: column;
+	--upro-profile--intro--justify-content: flex-end;
+	--upro-profile--intro--width: 100%;
+
+	// Layout elements.
+	--upro-box--border-style: solid;
+	--upro-box--border-width: 1px;
+	--upro-box--border-color: #{rgba( $color: #333333, $alpha: 0.5 )};
+	--upro-box--border-color--dark: #{rgba( $color: #eeeeee, $alpha: 0.5 )};
+	--upro-box--border: var( --upro-box--border-style ) var( --upro-box--border-width ) var( --upro-box--border-color );
+	--upro-box--border--dark: var( --upro-box--border-style ) var( --upro-box--border-width ) var( --upro-box--border-color--dark );
+
+	// Tabbed content.
+	--upro-tabs--list--gap: 0.5rem 0.25rem;
+	--upro-tabs--list--margin: 2rem 0 0 0;
+	--upro-tabs--list--padding: 0 0.5rem;
+	--upro-tabs--list--border-bottom-style: solid;
+	--upro-tabs--list--border-bottom-width: 1px;
+	--upro-tabs--list--border-bottom-color: var( --upro-box--border-color );
+	--upro-tabs--list--border-bottom-color--dark: var( --upro-box--border-color--dark );
+	--upro-tabs--list--link--border-style: solid;
+	--upro-tabs--list--link--border-width: 1px;
+	--upro-tabs--list--link--border-color: var( --upro-box--border-color );
+	--upro-tabs--list--link--border-color--dark: var( --upro-box--border-color--dark );
+	--upro-tabs--list--link--bg-color: #{rgba( $color: black, $alpha: 8% )};
+	--upro-tabs--list--link--bg-color--dark: #{rgba( $color: white, $alpha: 8% )};
+	--upro-tabs--list--link--font-weight: 600;
+}
