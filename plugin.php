@@ -486,7 +486,7 @@ class User_Profiles extends Plugin {
 		// Settings page URL.
 		$settings_page = DOMAIN_ADMIN . 'configure-plugin/' . $this->className() . '#options';
 
-		if ( str_contains( $url->slug(), 'edit-user' ) ) {
+		if ( checkRole( [ 'admin' ], false ) && str_contains( $url->slug(), 'edit-user' ) ) {
 			return sprintf(
 				'<script>var uuid = $("#jsuuid").val(); $uuid = uuid; if ( $uuid != "" ) { $( "#jsform nav" ).prepend( "<div class=\'alert alert-primary alert-search-forms\' role=\'alert\'><p class=\'m-0\'><a href=\'%s\'>%s</a></p></div>"); }</script>',
 				$settings_page,
@@ -494,7 +494,7 @@ class User_Profiles extends Plugin {
 			);
 		}
 
-		if ( 'users' == $url->slug() ) {
+		if ( checkRole( [ 'admin' ], false ) && 'users' == $url->slug() ) {
 			return sprintf(
 				'<script>var uuid = $("#jsuuid").val(); $uuid = uuid; if ( $uuid != "" ) { $( "h1 + a" ).append( "<div class=\'alert alert-primary alert-search-forms\' role=\'alert\'><p class=\'m-0\'><a href=\'%s\'>%s</a></p></div>"); }</script>',
 				$settings_page,
