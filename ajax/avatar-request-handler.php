@@ -8,8 +8,10 @@
  * @subpackage AJAX
  * @since      1.0.0
  */
-// Security constant.
+
+// Security constants.
 define( 'BLUDIT', true );
+define( 'JSON_CMS', true );
 
 // Path separator.
 define( 'DS', DIRECTORY_SEPARATOR );
@@ -35,13 +37,13 @@ foreach ( $_POST as $key => $value ) {
 }
 
 //Set variables.
-$action      = $_POST['action']; // @todo some protection.
-$success     = false;
-$pluginPath  = dirname( pathinfo( __FILE__, PATHINFO_DIRNAME ) );
-$basePath    = dirname( __FILE__, 4 ); // CMS base.
+$action       = $_POST['action']; // @todo some protection.
+$success      = false;
+$pluginPath   = dirname( pathinfo( __FILE__, PATHINFO_DIRNAME ) );
+$basePath     = dirname( __FILE__, 4 ); // CMS base.
 $storage_root = 'user-profiles';
-$storage     = $basePath . DS . 'bl-content' . DS . $storage_root;
-$configFile  = $basePath . DS . 'bl-content' . DS . 'databases' . DS . 'plugins' . DS . 'user-profiles' . DS . 'db.php';
+$storage      = $basePath . DS . 'bl-content' . DS . $storage_root;
+$configFile   = $basePath . DS . 'bl-content' . DS . 'databases' . DS . 'plugins' . DS . 'user-profiles' . DS . 'db.php';
 
 // load helpers.
 require 'class-plugin-config.php';
