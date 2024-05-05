@@ -91,9 +91,7 @@ if ( 'configureight' === site()->adminTheme() ) {
 
 		<a class="nav-item nav-link active" id="nav-bios-tab" data-toggle="tab" href="#bios" role="tab" aria-controls="nav-bios" aria-selected="false"><?php $L->p( 'Users' ); ?></a>
 
-		<a class="nav-item nav-link" id="nav-general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="nav-general" aria-selected="false"><?php $L->p( 'General' ); ?></a>
-
-		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php $L->p( 'Profile' ); ?></a>
+		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php $L->p( 'Profiles' ); ?></a>
 
 		<a class="nav-item nav-link" id="nav-author-tab" data-toggle="tab" href="#author" role="tab" aria-controls="nav-author" aria-selected="false"><?php $L->p( 'Author' ); ?></a>
 
@@ -110,10 +108,6 @@ if ( 'configureight' === site()->adminTheme() ) {
 
 		<?php include( $this->phpPath() . '/views/fields-users.php' ); ?>
 	</fieldset>
-
-	<div id="general" class="tab-pane fade show mt-4" role="tabpanel" aria-labelledby="nav-general-tab">
-		<?php include( $this->phpPath() . '/views/fields-general.php' ); ?>
-	</div>
 
 	<div id="profile" class="tab-pane fade show mt-4" role="tabpanel" aria-labelledby="nav-profile-tab">
 		<?php include( $this->phpPath() . '/views/fields-profile.php' ); ?>
