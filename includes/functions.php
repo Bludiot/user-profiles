@@ -395,15 +395,14 @@ function user_socials( $name = '' ) {
  *
  * @since  1.0.0
  * @global array $content
- * @global object $url The Url class.
  * @return void
  */
 function content_filter() {
 
 	// Access global variables.
-	global $content, $url;
+	global $content;
 
-	if ( 'page' != $url->whereAmI() ) {
+	if ( 'page' != url()->whereAmI() ) {
 		return;
 	}
 
