@@ -710,57 +710,57 @@ class User_Profiles extends Plugin {
 	 */
 
 	// @return string
-	function author_display() {
+	public function author_display() {
 		return $this->getValue( 'author_display' );
 	}
 
 	// @return string
-	function author_location() {
+	public function author_location() {
 		return $this->getValue( 'author_location' );
 	}
 
 	// @return boolean
-	function author_tabbed() {
+	public function author_tabbed() {
 		return $this->getValue( 'author_tabbed' );
 	}
 
 	// @return boolean
-	function author_avatar() {
+	public function author_avatar() {
 		return $this->getValue( 'author_avatar' );
 	}
 
 	// @return boolean
-	function author_role() {
+	public function author_role() {
 		return $this->getValue( 'author_role' );
 	}
 
 	// @return boolean
-	function author_email() {
+	public function author_email() {
 		return $this->getValue( 'author_email' );
 	}
 
 	// @return boolean
-	function author_site() {
+	public function author_site() {
 		return $this->getValue( 'author_site' );
 	}
 
 	// @return boolean
-	function author_social() {
+	public function author_social() {
 		return $this->getValue( 'author_social' );
 	}
 
 	// @return boolean
-	function author_posts() {
+	public function author_posts() {
 		return $this->getValue( 'author_posts' );
 	}
 
 	// @return integer
-	function author_limit() {
+	public function author_limit() {
 		return $this->getValue( 'author_limit' );
 	}
 
 	// @return string
-	function users_slug() {
+	public function users_slug() {
 
 		$field   = $this->getValue( 'users_slug' );
 		$decode  = htmlspecialchars_decode( $field );
@@ -772,22 +772,22 @@ class User_Profiles extends Plugin {
 	}
 
 	// @return integer
-	function avatar_width() {
+	public function avatar_width() {
 		return $this->getValue( 'avatar_width' );
 	}
 
 	// @return integer
-	function avatar_height() {
+	public function avatar_height() {
 		return $this->getValue( 'avatar_height' );
 	}
 
 	// @return string
-	function default_avatar() {
+	public function default_avatar() {
 		return $this->getValue( 'default_avatar' );
 	}
 
 	// @return array
-	function custom_avatar() {
+	public function custom_avatar() {
 		return $this->getValue( 'custom_avatar' );
 	}
 
@@ -827,92 +827,92 @@ class User_Profiles extends Plugin {
 	}
 
 	// @return boolean
-	function profile_role() {
+	public function profile_role() {
 		return $this->getValue( 'profile_role' );
 	}
 
 	// @return boolean
-	function profile_email() {
+	public function profile_email() {
 		return $this->getValue( 'profile_email' );
 	}
 
 	// @return boolean
-	function profile_site() {
+	public function profile_site() {
 		return $this->getValue( 'profile_site' );
 	}
 
 	// @return boolean
-	function profile_social() {
+	public function profile_social() {
 		return $this->getValue( 'profile_social' );
 	}
 
 	// @return boolean
-	function profile_posts() {
+	public function profile_posts() {
 		return $this->getValue( 'profile_posts' );
 	}
 
 	// @return integer
-	function profile_limit() {
+	public function profile_limit() {
 		return $this->getValue( 'profile_limit' );
 	}
 
 	// @return boolean
-	function sidebar_bio() {
+	public function sidebar_bio() {
 		return $this->getValue( 'sidebar_bio' );
 	}
 
 	// @return integer
-	function sb_bio_limit() {
+	public function sb_bio_limit() {
 		return $this->getValue( 'sb_bio_limit' );
 	}
 
 	// @return string
-	function sb_bio_label() {
+	public function sb_bio_label() {
 		return $this->getValue( 'sb_bio_label' );
 	}
 
 	// @return boolean
-	function sidebar_avatar() {
+	public function sidebar_avatar() {
 		return $this->getValue( 'sidebar_avatar' );
 	}
 
 	// @return boolean
-	function sidebar_links() {
+	public function sidebar_links() {
 		return $this->getValue( 'sidebar_links' );
 	}
 
 	// @return boolean
-	function sidebar_more() {
+	public function sidebar_more() {
 		return $this->getValue( 'sidebar_more' );
 	}
 
 	// @return integer
-	function sidebar_limit() {
+	public function sidebar_limit() {
 		return $this->getValue( 'sidebar_limit' );
 	}
 
 	// @return boolean
-	function sidebar_list() {
+	public function sidebar_list() {
 		return $this->getValue( 'sidebar_list' );
 	}
 
 	// @return mixed
-	function sb_list_label() {
+	public function sb_list_label() {
 		return $this->getValue( 'sb_list_label' );
 	}
 
 	// @return string
-	function sb_list_location() {
+	public function sb_list_location() {
 		return $this->getValue( 'sb_list_location' );
 	}
 
 	// @return boolean
-	function sb_list_avatar() {
+	public function sb_list_avatar() {
 		return $this->getValue( 'sb_list_avatar' );
 	}
 
 	// @return string
-	function sb_list_sort() {
+	public function sb_list_sort() {
 		return $this->getValue( 'sb_list_sort' );
 	}
 
