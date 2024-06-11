@@ -1,6 +1,6 @@
 <?php
 /**
- * User Profiles profile
+ * Settings page
  *
  * WARNING: do not reuse the `$avatar` variable
  * because it is assigned to the AJAX image
