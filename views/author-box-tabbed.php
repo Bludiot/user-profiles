@@ -25,7 +25,9 @@ use function UPRO_Tags\{
 	user_link,
 	user_display_name,
 	user_avatar,
-	social_list
+	social_list,
+	more_box_tab,
+	more_box_heading
 };
 
 $name     = page()->username();
@@ -44,7 +46,7 @@ $limit    = plugin()->profile_limit();
 			<a class="nav-link" role="tab" aria-controls="about-author" aria-selected="false" href="#about-author"><?php lang()->p( 'Author' ); ?></a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" role="tab" aria-controls="posts-by-author" aria-selected="false" href="#posts-by-author"><?php lang()->p( 'Posts' ); ?></a>
+			<a class="nav-link" role="tab" aria-controls="posts-by-author" aria-selected="false" href="#posts-by-author"><?php echo more_box_tab(); ?></a>
 		</li>
 	</ul>
 	<?php endif; ?>
@@ -115,7 +117,7 @@ $limit    = plugin()->profile_limit();
 	// More posts by the offer, if any, if option allows.
 	if ( plugin()->author_posts() && count( user_posts( $name ) ) > 1 ) : ?>
 	<div id="posts-by-author" class="author-info-posts author-info-padded author-info-tabbed" role="tabpanel" aria-labelledby="posts-by-author">
-		<h3 class="author-info-more"><?php lang()->p( 'More Posts by' ); ?> <?php echo user_display_name( $name ); ?></h3>
+		<h3 class="author-info-more"><?php echo more_box_heading( user_display_name( $name ) ); ?></h3>
 		<?php include( plugin()->phpPath() . '/views/posts-list.php' ); ?>
 	</div>
 	<?php endif; ?>

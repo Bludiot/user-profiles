@@ -15,6 +15,7 @@ use function UPRO_Func\{
 	plugin,
 	site,
 	lang,
+	url,
 	page,
 	icon,
 	user,
@@ -67,6 +68,13 @@ function role( $name = '', $return = 'role' ) {
 	return $role;
 }
 
+/**
+ * First name
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @return mixed
+ */
 function user_first_name( $name = '' ) {
 	$user = user( $name );
 	if ( $user->firstName() ) {
@@ -75,7 +83,13 @@ function user_first_name( $name = '' ) {
 	return false;
 }
 
-
+/**
+ * Last name
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @return mixed
+ */
 function user_last_name( $name = '' ) {
 	$user = user( $name );
 	if ( $user->lastName() ) {
@@ -84,7 +98,13 @@ function user_last_name( $name = '' ) {
 	return false;
 }
 
-
+/**
+ * Full name
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @return mixed
+ */
 function user_full_name( $name = '' ) {
 	$user = user( $name );
 	if ( $user->firstName() && $user->lastName() ) {
@@ -93,7 +113,13 @@ function user_full_name( $name = '' ) {
 	return false;
 }
 
-
+/**
+ * Nickname
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @return mixed
+ */
 function user_nickname( $name = '' ) {
 	$user = user( $name );
 	if ( $user->nickname() ) {
@@ -102,7 +128,13 @@ function user_nickname( $name = '' ) {
 	return false;
 }
 
-
+/**
+ * Display name
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @return string
+ */
 function user_display_name( $name = '' ) {
 
 	$user = user( $name );
@@ -362,6 +394,53 @@ function author_box( $template = '' ) {
 		return ob_get_clean();
 	}
 	return null;
+}
+
+/**
+ * More by author tab
+ *
+ * @since  1.0.0
+ * @return mixed
+ */
+function more_box_tab() {
+
+	if ( 'page' != url()->whereAmI() ) {
+		return false;
+	}
+
+	$tab = lang()->get( 'Posts' );
+	if ( 'page' == plugin()->author_display() ) {
+		$tab = lang()->get( 'Pages' );
+	} elseif ( 'both' == plugin()->author_display() ) {
+		$tab = lang()->get( 'More' );
+	}
+	return $tab;
+}
+
+/**
+ * More by author heading
+ *
+ * @since  1.0.0
+ * @param  string $name Username of author.
+ * @return string
+ */
+function more_box_heading( $name = '' ) {
+
+	if ( 'page' != url()->whereAmI() ) {
+		return false;
+	}
+
+	$type = lang()->get( 'Posts' );
+	if ( 'page' == plugin()->author_display() ) {
+		$type = lang()->get( 'Pages' );
+	} elseif ( 'both' == plugin()->author_display() ) {
+		$type = lang()->get( 'Content' );
+	}
+	return sprintf(
+		lang()->get( 'More %s by %s' ),
+		$type,
+		$name
+	);
 }
 
 function user_profile_before( $content = '' ) {
