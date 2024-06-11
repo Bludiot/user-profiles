@@ -10,4 +10,4 @@ The plugin was designed to augment the Configure 8 theme but can be used with ot
 
 ## Requirements
 
-The active theme must have the `siteSidebar` hook for the author bio widget to display.
+The active theme must have the `siteSidebar` hook for sidebar widgets to display.
