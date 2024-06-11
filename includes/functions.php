@@ -195,11 +195,18 @@ function user_posts( $name = '', $limit = 5 ) {
 	global $pages, $url;
 
 	$exclude = [
-		'static',
 		'scheduled',
 		'draft',
 		'autosave'
 	];
+
+	if ( 'post' == plugin()->author_display() ) {
+		$exclude = array_merge( [ 'static' ], $exclude );
+	}
+	if ( 'page' == plugin()->author_display() ) {
+		$exclude = array_merge( [ 'published' ], $exclude );
+	}
+
 	$posts = [];
 
 	$get_pages = $pages->getDB();
@@ -216,8 +223,8 @@ function user_posts( $name = '', $limit = 5 ) {
 		}
 
 		$page = buildPage( $key );
-
 		$type = $page->type();
+
 		if ( in_array( $type, $exclude ) ) {
 			continue;
 		}
@@ -259,7 +266,9 @@ function author_display() {
 
 	$location = plugin()->author_display();
 
-	if ( $page->isStatic() && 'page' == $location ) {
+	if ( $page->draft() || $page->autosave() ) {
+		$author = false;
+	} elseif ( $page->isStatic() && 'page' == $location ) {
 		$author = true;
 	} elseif ( ! $page->isStatic() && 'post' == $location ) {
 		$author = true;
