@@ -185,14 +185,14 @@ function profile_fields() {
  *
  * @since  1.0.0
  * @param  string $name Username
+ * @param  integer $limit Maximum pages.
  * @global object $pages The Pages class.
- * @global object $url The Url class.
  * @return mixed Returns an array of page keys or false.
  */
 function user_posts( $name = '', $limit = 5 ) {
 
 	// Access global variables.
-	global $pages, $url;
+	global $pages;
 
 	$exclude = [
 		'scheduled',
@@ -234,7 +234,7 @@ function user_posts( $name = '', $limit = 5 ) {
 			continue;
 		}
 
-		if ( 'page' == $url->whereAmI() ) {
+		if ( 'page' == url()->whereAmI() ) {
 			if ( page()->key() === $page->key() ) {
 				continue;
 			}
@@ -255,22 +255,19 @@ function user_posts( $name = '', $limit = 5 ) {
  */
 function author_display() {
 
-	// Access global variables.
-	global $page, $url;
-
 	$author = false;
 
-	if ( 'page' != $url->whereAmI() || 'search' == $url->whereAmI() ) {
+	if ( 'page' != url()->whereAmI() || 'search' == url()->whereAmI() ) {
 		return $author;
 	}
 
 	$location = plugin()->author_display();
 
-	if ( $page->draft() || $page->autosave() ) {
+	if ( page()->draft() || page()->autosave() ) {
 		$author = false;
-	} elseif ( $page->isStatic() && 'page' == $location ) {
+	} elseif ( page()->isStatic() && 'page' == $location ) {
 		$author = true;
-	} elseif ( ! $page->isStatic() && 'post' == $location ) {
+	} elseif ( ! page()->isStatic() && 'post' == $location ) {
 		$author = true;
 	} elseif ( 'both' == $location ) {
 		$author = true;
@@ -284,7 +281,8 @@ function author_display() {
  * The URL for the default, fallback cover.
  *
  * @since  1.0.0
- * @return string
+ * @param  boolean $cropped
+ * @return mixed
  */
 function default_cover( $cropped = true ) {
 
@@ -312,6 +310,15 @@ function default_cover( $cropped = true ) {
 	return false;
 }
 
+/**
+ * Default social networks
+ *
+ * Returns an array of the social networks
+ * built into the CMS user form.
+ *
+ * @since  1.0.0
+ * @return array
+ */
 function default_socials() {
 
 	$socials = [
@@ -329,7 +336,16 @@ function default_socials() {
 	return $socials;
 }
 
-
+/**
+ * User has socials
+ *
+ * Returns true if the user has at least
+ * one social networks field filled.
+ *
+ * @since  1.0.0
+ * @param  string $name Username to check for socials.
+ * @return boolean
+ */
 function has_social( $name = '' ) {
 
 	if ( empty( $name ) ) {
@@ -348,10 +364,20 @@ function has_social( $name = '' ) {
 	return $has_social;
 }
 
+/**
+ * User socials
+ *
+ * Returns the names and URLs of social networks.
+ *
+ * @since  1.0.0
+ * @param  string $name Username to check for socials.
+ * @return mixed
+ */
 function user_socials( $name = '' ) {
 
+	// Return false if no socials.
 	if ( ! has_social( $name ) ) {
-		return;
+		return false;
 	}
 
 	$socials = [
@@ -437,13 +463,9 @@ function content_filter() {
  * Sidebar list
  *
  * @since  1.0.0
- * @global object $L The Language class.
  * @return string Returns the list markup.
  */
 function sidebar_users_list()  {
-
-	// Access global variables.
-	global $L;
 
 	// Override default function arguments.
 	$args = [
