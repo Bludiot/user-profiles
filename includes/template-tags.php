@@ -326,6 +326,14 @@ function user_posts_list( $name = '', $limit = 5 ) {
 	return $list;
 }
 
+/**
+ * Get social link
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @param  string $site
+ * @return mixed
+ */
 function get_social( $name = '', $site = '' ) {
 
 	$allowed = default_socials();
@@ -343,6 +351,13 @@ function get_social( $name = '', $site = '' ) {
 	return false;
 }
 
+/**
+ * Social network list
+ *
+ * @since  1.0.0
+ * @param  string $name
+ * @return string
+ */
 function social_list( $name = '' ) {
 
 	if ( ! has_social( $name ) ) {
@@ -441,18 +456,6 @@ function more_box_heading( $name = '' ) {
 		$type,
 		$name
 	);
-}
-
-function user_profile_before( $content = '' ) {
-	return $content;
-}
-
-function user_profile_content( $content = '' ) {
-	return $content;
-}
-
-function user_profile_after( $content = '' ) {
-	return $content;
 }
 
 /**

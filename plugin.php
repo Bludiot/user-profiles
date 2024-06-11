@@ -685,7 +685,7 @@ class User_Profiles extends Plugin {
 	 * User page content
 	 *
 	 * Content for the singular user page.
-	 * Require that the theme use the
+	 * Requires that the theme employ the
 	 * `user_profile_content` hook.
 	 *
 	 * @since  1.0.0
