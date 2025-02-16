@@ -139,6 +139,7 @@ class User_Profiles extends Plugin {
 
 		$dynamic_fields = profile_fields();
 		$static_fields  = [
+			'keep_options'        => true,
 			'author_display'      => 'post',
 			'author_tabbed'       => true,
 			'author_location'     => 'after',
@@ -213,6 +214,23 @@ class User_Profiles extends Plugin {
 	 */
 	public function install( $position = 100 ) {
 
+		/**
+		 * Stop if preserving options and uploads.
+		 *
+		 * The `installed()` method in the parent class simply
+		 * checks for a database corresponding to this plugin.
+		 * If the `keep_options` setting is true then the database
+		 * was not deleted on uninstall. However, this `install()`
+		 * method is still run when the theme/plugin are reactivated
+		 * and will overwrite the saved database if not stopped here.
+		 *
+		 * The check for `keep_options` is not necessary but
+		 * included for completeness.
+		 */
+		if ( $this->installed() && $this->keep_options() ) {
+			return;
+		}
+
 		// Create workspace.
 		$workspace = $this->workspace();
 		mkdir( $workspace, DIR_PERMISSIONS, true );
@@ -251,6 +269,11 @@ class User_Profiles extends Plugin {
 	 * @return boolean
 	 */
 	public function uninstall() {
+
+		// Stop if preserving options and uploads.
+		if ( $this->keep_options() ) {
+			return false;
+		}
 
 		// Delete database.
 		$path = PATH_PLUGINS_DATABASES . $this->directoryName;
@@ -708,6 +731,11 @@ class User_Profiles extends Plugin {
 	 * @since  1.0.0
 	 * @access public
 	 */
+
+	// @return boolean
+	public function keep_options() {
+		return $this->getValue( 'keep_options' );
+	}
 
 	// @return string
 	public function author_display() {

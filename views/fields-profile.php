@@ -46,6 +46,17 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 	<p><?php $L->p( 'Requires that the active theme employ the <code>user_profile_content</code> hook.' ); ?></p>
 
 	<div class="form-field form-group row">
+		<label class="form-label col-sm-2 col-form-label" for="keep_options"><?php $L->p( 'Save Options' ); ?></label>
+		<div class="col-sm-10">
+			<select class="form-select" id="keep_options" name="keep_options">
+				<option value="true" <?php echo ( $this->getValue( 'keep_options' ) === true ? 'selected' : '' ); ?>><?php $L->p( 'Save All' ); ?></option>
+				<option value="false" <?php echo ( $this->getValue( 'keep_options' ) === false ? 'selected' : '' ); ?>><?php $L->p( 'Delete All' ); ?></option>
+			</select>
+			<small class="form-text"><?php $L->p( 'Save these options and image uploads when deactivating this plugin. Options and images will be restored when reactivating the plugin if set to save all. Delete all will reset the plugin on reactivation.' ); ?></small>
+		</div>
+	</div>
+
+	<div class="form-field form-group row">
 		<label class="form-label col-sm-2 col-form-label" for="profile_pages"><?php $L->p( 'Profile Pages' ); ?></label>
 		<div class="col-sm-10">
 			<select class="form-select" id="profile_pages" name="profile_pages">
