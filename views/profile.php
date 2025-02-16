@@ -16,6 +16,7 @@ use function UPRO_Func\{
 	page,
 	user_slug,
 	user,
+	user_posts,
 	default_cover,
 	has_social,
 	user_socials,
@@ -154,7 +155,7 @@ if ( $theme ) {
 		</div>
 	</div>
 
-	<?php if ( $show_posts ) : ?>
+	<?php if ( $show_posts && ! empty( user_posts( $name ) ) ) : ?>
 	<div id="profile-page-posts" class="profile-page-posts">
 		<?php printf(
 			'%s%s %s%s',
@@ -164,6 +165,14 @@ if ( $theme ) {
 			$section_el_close
 		); ?>
 		<?php include( $this->phpPath() . '/views/posts-list.php' ); ?>
+	</div>
+	<?php elseif ( $show_posts && empty( user_posts( $name ) ) ) : ?>
+	<div id="profile-page-posts" class="profile-page-posts">
+		<?php printf(
+			'<p>%s %s</p>',
+			user_display_name( $name ),
+			lang()->get( 'has not yet created any posts.' )
+		); ?>
 	</div>
 	<?php endif; ?>
 </div>
