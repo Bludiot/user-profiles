@@ -45,10 +45,14 @@ $bio         = plugin()->getValue( 'bio_' . $name );
 $theme       = getPlugin( 'configureight' );
 $header      = plugin()->header_style();
 $show_role   = plugin()->profile_role();
-$show_email  = plugin()->profile_email();
 $show_site   = plugin()->profile_site();
 $show_social = plugin()->profile_social();
 $show_posts  = plugin()->profile_posts();
+if ( plugin()->getValue( 'email_' . $name ) !== plugin()->profile_email() ) {
+	$show_email  = plugin()->getValue( 'email_' . $name );
+} else {
+	$show_email  = plugin()->profile_email();
+}
 
 // Heading elements vary by theme and options.
 if ( $theme ) {

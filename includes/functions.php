@@ -170,10 +170,12 @@ function profile_fields() {
 	foreach ( $usernames as $name ) {
 
 		$cover   = 'cover_'   . $name;
+		$email   = 'email_'   . $name;
 		$website = 'website_' . $name;
 		$bio     = 'bio_'     . $name;
 
 		$fields[$cover]   = [];
+		$fields[$email]   = true;
 		$fields[$website] = '';
 		$fields[$bio]     = '';
 	}

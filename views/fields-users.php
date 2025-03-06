@@ -76,6 +76,17 @@ foreach ( $list as $name ) {
 		</div>
 
 		<div class="form-field form-group row">
+			<label class="form-label col-sm-2 col-form-label" for="email_<?php echo $username; ?>"><?php $L->p( 'Email Display' ); ?></label>
+			<div class="col-sm-10">
+				<select class="form-select" id="email_" name="email_<?php echo $username; ?>">
+					<option value="true" <?php echo ( $this->getValue( 'email_' . $username ) === true ? 'selected' : '' ); ?>><?php $L->p( 'Show' ); ?></option>
+					<option value="false" <?php echo ( $this->getValue( 'email_' . $username ) === false ? 'selected' : '' ); ?>><?php $L->p( 'Hide' ); ?></option>
+				</select>
+				<small class="form-text"><?php $L->p( 'Override the default email display setting.' ); ?></small>
+			</div>
+		</div>
+
+		<div class="form-field form-group row">
 			<label class="form-label col-sm-2 col-form-label" for="website_<?php echo $username; ?>"><?php $L->p( 'Website' ); ?></label>
 			<div class="col-sm-10">
 				<input type="text" id="website_<?php echo $username; ?>" name="website_<?php echo $username; ?>" value="<?php echo $this->getValue( 'website_' . $username ); ?>" placeholder="https://example.com" />
