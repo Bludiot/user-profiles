@@ -66,7 +66,7 @@ use function UPRO_Func\{
 
 					<option value="true" <?php echo ( $this->getValue( 'sidebar_avatar' ) === true ? 'selected' : '' ); ?>><?php $L->p( 'Enabled' ); ?></option>
 				</select>
-				<small class="form-text"><?php $L->p( 'Display author avatar in the bio.' ); ?></small>
+				<small class="form-text"><?php $L->p( 'Display author avatar in the widget.' ); ?></small>
 			</div>
 		</div>
 
@@ -91,7 +91,7 @@ use function UPRO_Func\{
 
 					<option value="true" <?php echo ( $this->getValue( 'sidebar_links' ) === true ? 'selected' : '' ); ?>><?php $L->p( 'Enabled' ); ?></option>
 				</select>
-				<small class="form-text"><?php $L->p( 'Display author personal links in the bio.' ); ?></small>
+				<small class="form-text"><?php $L->p( 'Display author personal links in the widget.' ); ?></small>
 			</div>
 		</div>
 	</div>
@@ -124,7 +124,7 @@ use function UPRO_Func\{
 				<input type="range" class="form-control-range custom-range" onInput="$('#sidebar_limit_value').html($(this).val())" id="sidebar_limit" name="sidebar_limit" value="<?php echo $this->getValue( 'sidebar_limit' ); ?>" min="1" max="20" step="1" />
 				<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#sidebar_limit_value').text('<?php echo $this->dbFields['sidebar_limit']; ?>');$('#sidebar_limit').val('<?php echo $this->dbFields['sidebar_limit']; ?>');"><?php $L->p( 'Default' ); ?></span>
 			</div>
-			<small class="form-text"><?php $L->p( 'Sets a maximum number of posts to display in the links list. ' ); ?></small>
+			<small class="form-text"><?php $L->p( 'Sets a maximum number of posts to display in the list. ' ); ?></small>
 		</div>
 	</div>
 </fieldset>
