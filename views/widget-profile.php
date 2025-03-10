@@ -28,6 +28,7 @@ use function UPRO_Tags\{
 if ( 'page' == $url->whereAmI() ) :
 if ( ! page()->isStatic() ) :
 
+// User variables.
 $username = page()->username();
 $get_user = user( $username );
 $website  = plugin()->getValue( 'website_' . $username );

@@ -13,4 +13,5 @@ use function UPRO_Func\{
 	sidebar_users_list
 };
 
+// Display users list.
 echo sidebar_users_list();

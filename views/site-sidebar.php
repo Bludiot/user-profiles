@@ -14,6 +14,7 @@ use function UPRO_Func\{
 	active_widgets
 };
 
+// Get enabled widgets array, sorted.
 $active = active_widgets();
 $sort   = plugin()->sb_widgets_sort();
 if ( ! empty( $sort ) ) {
@@ -23,6 +24,7 @@ if ( ! empty( $sort ) ) {
 	$list = $active;
 }
 
+// Get widget templates for each in sorted order.
 foreach ( $list as $widget => $name ) {
 	if ( ! array_key_exists( $widget, $active ) ) {
 		continue;

@@ -52,5 +52,5 @@ $heading = sprintf(
 	</div>
 </div>
 <?php
-endif;
-endif;
+endif; // If not static.
+endif; // If page.
