@@ -54,6 +54,12 @@ foreach ( $list as $name ) {
 						<p>
 						<?php printf(
 							'<span class="upro-form-label">%s</span> <span class="upro-form-detail">%s</span>',
+							$L->get( 'Username:' ),
+							$username
+						); ?>
+						<br />
+						<?php printf(
+							'<span class="upro-form-label">%s</span> <span class="upro-form-detail">%s</span>',
 							$L->get( 'Role:' ),
 							role( $username, 'title' )
 						); ?>
