@@ -479,10 +479,10 @@ function sidebar_users_list()  {
 		$args['label'] = plugin()->sb_list_label();
 	}
 
-	if ( ! plugin()->sb_bio_label() ) {
+	if ( ! plugin()->widgets_label() ) {
 		$args = array_merge( $args, [ 'label_el' => false ] );
-	} elseif ( plugin()->sb_bio_label() ) {
-		$args = array_merge( $args, [ 'label_el' => plugin()->sb_bio_label() ] );
+	} elseif ( plugin()->widgets_label() ) {
+		$args = array_merge( $args, [ 'label_el' => plugin()->widgets_label() ] );
 	}
 
 	if ( 'date' == plugin()->sb_list_sort() ) {
@@ -495,6 +495,60 @@ function sidebar_users_list()  {
 
 	// Return a modified list.
 	return users_list( $args );
+}
+
+/**
+ * Active widgets
+ *
+ * @since  1.0.0
+ * @return array
+ */
+function active_widgets() {
+
+	$widgets = [];
+
+	if ( plugin()->sidebar_bio() ) {
+		$profile = [
+			'profile' => lang()->get( 'Author Profile' )
+		];
+		$widgets = array_merge( $widgets, $profile );
+	}
+
+	if ( plugin()->sidebar_more() ) {
+		$posts = [
+			'posts' => lang()->get( 'More Posts' )
+		];
+		$widgets = array_merge( $widgets, $posts );
+	}
+
+	if ( true === plugin()->sidebar_list() ) {
+		$list = [
+			'list' => lang()->get( 'Users List' )
+		];
+		$widgets = array_merge( $widgets, $list );
+	}
+
+	return $widgets;
+}
+
+/**
+ * Widgets order
+ *
+ * @since  1.0.0
+ * @return array
+ */
+function widgets_order() {
+
+}
+
+/**
+ * Count active widgets
+ *
+ * @since  1.0.0
+ * @return integer
+ */
+function count_widgets() {
+	return count( active_widgets() );
 }
 
 /**

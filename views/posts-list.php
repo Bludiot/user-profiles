@@ -2,7 +2,7 @@
 /**
  * Posts list display
  *
- * @package    Boilerplate
+ * @package    User Profiles
  * @subpackage Views
  * @category   Frontend
  * @since      1.0.0

@@ -139,7 +139,7 @@ class User_Profiles extends Plugin {
 
 		$dynamic_fields = profile_fields();
 		$static_fields  = [
-			'keep_options'        => true,
+			'keep_options'        => false,
 			'author_display'      => 'post',
 			'author_tabbed'       => true,
 			'author_location'     => 'after',
@@ -176,16 +176,16 @@ class User_Profiles extends Plugin {
 			'profile_limit'       => 6,
 			'sidebar_bio'         => false,
 			'sb_bio_limit'        => 200,
-			'sb_bio_label'        => 'h2',
+			'widgets_label'       => 'h2',
 			'sidebar_avatar'      => true,
 			'sidebar_links'       => true,
 			'sidebar_more'        => true,
 			'sidebar_limit'       => 5,
 			'sidebar_list'        => true,
 			'sb_list_label'       => $L->get( 'Authors' ),
-			'sb_list_location'    => 'after',
 			'sb_list_avatar'      => true,
-			'sb_list_sort'        => 'abc'
+			'sb_list_sort'        => 'abc',
+			'sb_widgets_sort'     => 'posts,list'
 		];
 		$fields = array_merge( $dynamic_fields, $static_fields );
 
@@ -895,8 +895,8 @@ class User_Profiles extends Plugin {
 	}
 
 	// @return string
-	public function sb_bio_label() {
-		return $this->getValue( 'sb_bio_label' );
+	public function widgets_label() {
+		return $this->getValue( 'widgets_label' );
 	}
 
 	// @return boolean
@@ -924,14 +924,13 @@ class User_Profiles extends Plugin {
 		return $this->getValue( 'sidebar_list' );
 	}
 
-	// @return mixed
-	public function sb_list_label() {
-		return $this->getValue( 'sb_list_label' );
-	}
-
 	// @return string
-	public function sb_list_location() {
-		return $this->getValue( 'sb_list_location' );
+	public function sb_list_label() {
+		if ( ! empty( $this->getValue( 'sb_list_label' ) ) ) {
+			return ucwords( $this->getValue( 'sb_list_label' ) );
+		} else {
+			return $this->dbFields['sb_list_label'];
+		}
 	}
 
 	// @return boolean
@@ -942,6 +941,11 @@ class User_Profiles extends Plugin {
 	// @return string
 	public function sb_list_sort() {
 		return $this->getValue( 'sb_list_sort' );
+	}
+
+	// @return array
+	public function sb_widgets_sort() {
+		return $this->getValue( 'sb_widgets_sort' );
 	}
 
 	/**
