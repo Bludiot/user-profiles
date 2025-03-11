@@ -25,13 +25,13 @@ use function UPRO_Func\{
 	<h3 class="tab-section-heading"><?php $L->p( 'Widget Options' ); ?></h3>
 
 	<div class="form-field form-group row">
-		<label class="form-label col-sm-2 col-form-label" for="widgets_label"><?php $L->p( 'Headings' ); ?></label>
+		<label class="form-label col-sm-2 col-form-label" for="widgets_label"><?php $L->p( 'Sidebar Headings' ); ?></label>
 		<div class="col-sm-10">
 			<div class="form-control-has-button">
 				<input type="text" id="widgets_label" name="widgets_label" value="<?php echo $this->getValue( 'widgets_label' ); ?>" placeholder="<?php $L->p( 'h2' ); ?>" />
 				<span class="btn btn-secondary btn-md button hide-if-no-js" onClick="$('#widgets_label').val('<?php echo $this->dbFields['widgets_label']; ?>');"><?php $L->p( 'Default' ); ?></span>
 			</div>
-			<small class="form-text text-muted"><?php $L->p( 'Wrap the widget headings in an HTML element. Accepts HTML tags without brackets (e.g. h3), and comma-separated tags (e.g. span,strong,em). Save as blank for no wrapping element.' ); ?></small>
+			<small class="form-text text-muted"><?php $L->p( 'Wrap the widget headings in an HTML element that works with your theme. Accepts HTML tags without brackets (e.g. h3), and comma-separated tags (e.g. span,strong,em). Save as blank for no wrapping element.' ); ?></small>
 		</div>
 	</div>
 </fieldset>
@@ -116,15 +116,28 @@ use function UPRO_Func\{
 		</div>
 	</div>
 
-	<div id="widget-posts-wrap" class="form-field form-group row" style="display: <?php echo ( $this->getValue( 'sidebar_more' ) === true ? 'flex' : 'none' ); ?>;">
-		<label class="form-label col-sm-2 col-form-label" for="sidebar_limit"><?php $L->p( 'List Limit' ); ?></label>
-		<div class="col-sm-10 row">
-			<div class="form-range-controls">
-				<span class="form-range-value"><span id="sidebar_limit_value"><?php echo ( $this->getValue( 'sidebar_limit' ) ? $this->getValue( 'sidebar_limit' ) : $this->dbFields['sidebar_limit'] ); ?></span></span>
-				<input type="range" class="form-control-range custom-range" onInput="$('#sidebar_limit_value').html($(this).val())" id="sidebar_limit" name="sidebar_limit" value="<?php echo $this->getValue( 'sidebar_limit' ); ?>" min="1" max="20" step="1" />
-				<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#sidebar_limit_value').text('<?php echo $this->dbFields['sidebar_limit']; ?>');$('#sidebar_limit').val('<?php echo $this->dbFields['sidebar_limit']; ?>');"><?php $L->p( 'Default' ); ?></span>
+	<div id="widget-posts-wrap">
+		<div class="form-field form-group row">
+			<label class="form-label col-sm-2 col-form-label" for="more_widget_label"><?php $L->p( 'Posts Heading' ); ?></label>
+			<div class="col-sm-10">
+				<input type="text" id="more_widget_label" name="more_widget_label" value="<?php echo $this->getValue( 'more_widget_label' ); ?>" placeholder="" />
+				<small class="form-text">
+					<?php $L->p( 'The heading text for the more posts list. Placeholders: <code class="select">{{first_name}}</code> <code class="select">{{display_name}}</code>
+				' ); ?>
+				</small>
 			</div>
-			<small class="form-text"><?php $L->p( 'Sets a maximum number of posts to display in the list. ' ); ?></small>
+		</div>
+
+		<div class="form-field form-group row" style="display: <?php echo ( $this->getValue( 'sidebar_more' ) === true ? 'flex' : 'none' ); ?>;">
+			<label class="form-label col-sm-2 col-form-label" for="sidebar_limit"><?php $L->p( 'Posts Limit' ); ?></label>
+			<div class="col-sm-10 row">
+				<div class="form-range-controls">
+					<span class="form-range-value"><span id="sidebar_limit_value"><?php echo ( $this->getValue( 'sidebar_limit' ) ? $this->getValue( 'sidebar_limit' ) : $this->dbFields['sidebar_limit'] ); ?></span></span>
+					<input type="range" class="form-control-range custom-range" onInput="$('#sidebar_limit_value').html($(this).val())" id="sidebar_limit" name="sidebar_limit" value="<?php echo $this->getValue( 'sidebar_limit' ); ?>" min="1" max="20" step="1" />
+					<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#sidebar_limit_value').text('<?php echo $this->dbFields['sidebar_limit']; ?>');$('#sidebar_limit').val('<?php echo $this->dbFields['sidebar_limit']; ?>');"><?php $L->p( 'Default' ); ?></span>
+				</div>
+				<small class="form-text"><?php $L->p( 'Sets a maximum number of posts to display in the list. ' ); ?></small>
+			</div>
 		</div>
 	</div>
 </fieldset>
@@ -242,7 +255,7 @@ jQuery(document).ready( function($) {
 	$( '#sidebar_more' ).on( 'change', function() {
 		var show = $(this).val();
 		if ( 'true' == show ) {
-			$( '#widget-posts-wrap' ).css( 'display', 'flex' );
+			$( '#widget-posts-wrap' ).css( 'display', 'block' );
 		} else if ( 'false' == show ) {
 			$( '#widget-posts-wrap' ).css( 'display', 'none' );
 		}

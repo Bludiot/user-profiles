@@ -179,6 +179,7 @@ class User_Profiles extends Plugin {
 			'sidebar_avatar'      => true,
 			'sidebar_links'       => true,
 			'sidebar_more'        => true,
+			'more_widget_label'   => '',
 			'sidebar_limit'       => 5,
 			'sidebar_list'        => true,
 			'sb_list_label'       => $L->get( 'Authors' ),
@@ -881,6 +882,11 @@ class User_Profiles extends Plugin {
 	// @return boolean
 	public function sidebar_more() {
 		return $this->getValue( 'sidebar_more' );
+	}
+
+	// @return string
+	public function more_widget_label() {
+		return $this->getValue( 'more_widget_label' );
 	}
 
 	// @return integer

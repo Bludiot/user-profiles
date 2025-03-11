@@ -12,7 +12,8 @@
 use function UPRO_Func\{
 	plugin,
 	lang,
-	page
+	page,
+	user
 };
 use function UPRO_Tags\{
 	user_first_name,
@@ -23,7 +24,9 @@ use function UPRO_Tags\{
 if ( 'page' == $url->whereAmI() ) :
 if ( ! page()->isStatic() ) :
 
+// User variables.
 $username = page()->username();
+$get_user = user( $username );
 
 // Author posts limit.
 $posts_limit = plugin()->sidebar_limit();
@@ -35,13 +38,32 @@ $get_close = str_replace( ',', '></', plugin()->widgets_label() );
 $label_el_open  = "<{$get_open}>";
 $label_el_close = "</{$get_close}>";
 
-$heading = sprintf(
-	'%1$s%2$s %3$s%4$s',
-	$label_el_open,
-	lang()->get( 'More from' ),
-	( user_first_name( $username ) ? user_first_name( $username ) : user_display_name( $username ) ),
-	$label_el_close
-);
+$get_text = plugin()->more_widget_label();
+if ( ! empty( $get_text ) && ! ctype_space( $get_text ) ) {
+
+	$text = $get_text;
+	if ( strstr( $get_text, '{{first_name}}' ) ) {
+		$text = str_replace( '{{first_name}}', user_first_name( $username ), $text );
+	}
+	if ( strstr( $get_text, '{{display_name}}' ) ) {
+		$text = str_replace( '{{display_name}}', user_display_name( $username ), $text );
+	}
+
+	$heading = sprintf(
+		'%1$s%2$s%3$s',
+		$label_el_open,
+		$text,
+		$label_el_close
+	);
+} else {
+	$heading = sprintf(
+		'%1$s%2$s %3$s%4$s',
+		$label_el_open,
+		lang()->get( 'More from' ),
+		( user_first_name( $username ) ? user_first_name( $username ) : user_display_name( $username ) ),
+		$label_el_close
+	);
+}
 
 ?>
 <div id="sidebar-author-more" class="plugin plugin-user-profiles plugin-user-links">

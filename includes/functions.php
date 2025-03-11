@@ -475,14 +475,16 @@ function sidebar_users_list()  {
 		'wrap_class' => 'list-wrap users-list-wrap plugin plugin-users-list'
 	];
 
-	if ( ! empty( plugin()->sb_list_label() ) ) {
-		$args['label'] = plugin()->sb_list_label();
+	$label = plugin()->sb_list_label();
+	if ( ! empty( $label ) && ! ctype_space( $label ) ) {
+		$args['label'] = $label;
 	}
 
-	if ( ! plugin()->widgets_label() ) {
+	$label_el = plugin()->widgets_label();
+	if ( ! $label_el ) {
 		$args = array_merge( $args, [ 'label_el' => false ] );
-	} elseif ( plugin()->widgets_label() ) {
-		$args = array_merge( $args, [ 'label_el' => plugin()->widgets_label() ] );
+	} elseif ( $label_el ) {
+		$args = array_merge( $args, [ 'label_el' => $label_el ] );
 	}
 
 	if ( 'date' == plugin()->sb_list_sort() ) {
