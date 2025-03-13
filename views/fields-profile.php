@@ -22,6 +22,13 @@ use function UPRO_Tags\{
 	default_avatar
 };
 
+// Helper.
+if ( BLUDIT_VERSION >= '4.0.0' ) {
+	$helper = 'execPluginsByHook( \'user_profile_content\' );';
+} else {
+	$helper = 'Theme::plugins( \'user_profile_content\' );';
+}
+
 $user   = user( 'admin' );
 $name   = $user->username();
 $header = plugin()->header_style();
@@ -43,7 +50,7 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 
 	<h3 class="tab-section-heading"><?php $L->p( 'Profile Options' ); ?></h3>
 
-	<p><?php $L->p( 'Requires that the active theme employ the <code>user_profile_content</code> hook.' ); ?></p>
+	<p><?php $L->p( 'Requires that the active theme employ the <code>&lt;?php ' . $helper . ' ?&gt;</code> hook.' ); ?></p>
 
 	<div class="form-field form-group row">
 		<label class="form-label col-sm-2 col-form-label" for="profile_pages"><?php $L->p( 'Profile Pages' ); ?></label>

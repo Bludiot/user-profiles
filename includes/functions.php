@@ -487,10 +487,6 @@ function sidebar_users_list()  {
 		$args = array_merge( $args, [ 'label_el' => $label_el ] );
 	}
 
-	if ( 'date' == plugin()->sb_list_sort() ) {
-		$args['sort_by'] = 'date';
-	}
-
 	if ( ! plugin()->sb_list_avatar() ) {
 		$args['avatars'] = false;
 	}
@@ -534,13 +530,23 @@ function active_widgets() {
 }
 
 /**
- * Widgets order
+ * Users list minimum role
  *
  * @since  1.0.0
  * @return array
  */
-function widgets_order() {
+function users_list_min_role() {
 
+	$min  = plugin()->sb_list_role();
+	$role = [ 'admin', 'editor', 'author' ];
+
+	if ( 'editor' == $min ) {
+		$role = [ 'admin', 'editor' ];
+	}
+	if ( 'admin' == $min ) {
+		$role = [ 'admin' ];
+	}
+	return $role;
 }
 
 /**

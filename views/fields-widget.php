@@ -17,8 +17,28 @@ use function UPRO_Func\{
 	count_widgets,
 	active_widgets
 };
+use function UPRO_Tags\{
+	user_display_name
+};
 
 ?>
+<style>
+code.user-select {
+	user-select: all;
+	cursor: pointer;
+}
+
+.multi-check-wrap {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .125em 1em;
+}
+
+.hide-input {
+	display: none !important;
+}
+</style>
 <fieldset id="users-widgets-general">
 	<legend class="screen-reader-text mb-3"><?php $L->p( 'Widget Options' ); ?></legend>
 
@@ -185,6 +205,72 @@ use function UPRO_Func\{
 				<small class="form-text"><?php $L->p( 'Display user avatars in the list.' ); ?></small>
 			</div>
 		</div>
+
+		<div class="form-field form-group row">
+			<label class="form-label col-sm-2 col-form-label" for="sb_list_display"><?php $L->p( 'Users Display' ); ?></label>
+			<div class="col-sm-10">
+				<select class="form-select" id="sb_list_display" name="sb_list_display">
+
+					<option value="all" <?php echo ( $this->getValue( 'sb_list_display' ) === 'all' ? 'selected' : '' ); ?>><?php $L->p( 'All Users' ); ?></option>
+
+					<option value="limit" <?php echo ( $this->getValue( 'sb_list_display' ) === 'limit' ? 'selected' : '' ); ?>><?php $L->p( 'Limit List' ); ?></option>
+
+					<option value="select" <?php echo ( $this->getValue( 'sb_list_display' ) === 'select' ? 'selected' : '' ); ?>><?php $L->p( 'Select Users' ); ?></option>
+				</select>
+			</div>
+		</div>
+
+		<div id="sb_list_role_wrap" class="form-field form-group row" style="display: <?php echo ( $this->sb_list_display() == 'select' ? 'none' : 'flex' ); ?>;">
+			<label class="form-label col-sm-2 col-form-label" for="sb_list_role"><?php $L->p( 'User Roles' ); ?></label>
+			<div class="col-sm-10">
+				<select class="form-select" id="sb_list_role" name="sb_list_role">
+
+					<option value="author" <?php echo ( $this->getValue( 'sb_list_role' ) === 'author' ? 'selected' : '' ); ?>><?php $L->p( 'Author' ); ?></option>
+
+					<option value="editor" <?php echo ( $this->getValue( 'sb_list_role' ) === 'editor' ? 'selected' : '' ); ?>><?php $L->p( 'Editor' ); ?></option>
+
+					<option value="admin" <?php echo ( $this->getValue( 'sb_list_role' ) === 'admin' ? 'selected' : '' ); ?>><?php $L->p( 'Administrator' ); ?></option>
+				</select>
+				<small class="form-text"><?php $L->p( 'The minimum user role displayed. ' ); ?></small>
+			</div>
+		</div>
+
+		<div id="sb_list_limit_wrap" class="form-field form-group row" style="display: <?php echo ( $this->getValue( 'sb_list_display' ) === 'limit' ? 'flex' : 'none' ); ?>;">
+			<label class="form-label col-sm-2 col-form-label" for="sb_list_limit"><?php $L->p( 'Users Limit' ); ?></label>
+			<div class="col-sm-10 row">
+				<div class="form-range-controls">
+					<span class="form-range-value"><span id="sb_list_limit_value"><?php echo ( $this->getValue( 'sb_list_limit' ) ? $this->getValue( 'sb_list_limit' ) : $this->dbFields['sb_list_limit'] ); ?></span></span>
+					<input type="range" class="form-control-range custom-range" onInput="$('#sb_list_limit_value').html($(this).val())" id="sb_list_limit" name="sb_list_limit" value="<?php echo $this->getValue( 'sb_list_limit' ); ?>" min="1" max="48" step="1" />
+					<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#sb_list_limit_value').text('<?php echo $this->dbFields['sb_list_limit']; ?>');$('#sb_list_limit').val('<?php echo $this->dbFields['sb_list_limit']; ?>');"><?php $L->p( 'Default' ); ?></span>
+				</div>
+				<small class="form-text"><?php $L->p( 'Sets a maximum number of posts to display in the list. Sorted alphabetically by username, not by display name. ' ); ?></small>
+			</div>
+		</div>
+
+		<div id="sb_list_select_wrap" class="form-field form-group row" style="display: <?php echo ( $this->getValue( 'sb_list_display' ) == 'select' ? 'flex' : 'none' ); ?>;">
+			<label class="form-label col-sm-2 col-form-label" for="sb_list_select"><?php $L->p( 'Select Users' ); ?></label>
+
+			<div class="col-sm-10">
+				<div class="multi-check-wrap">
+				<?php
+				foreach ( usernames() as $user ) {
+					printf(
+						'<label class="check-label-wrap" for="%s"><input type="checkbox" name="sb_list_select[]" id="%s" value="%s" %s /> %s</label>',
+						$user,
+						$user,
+						$user,
+						( is_array( $this->sb_list_select() ) && in_array( $user, $this->sb_list_select() ) ? 'checked' : '' ),
+						user_display_name( $user )
+					);
+				}
+				printf(
+					'<label class="check-label-wrap hide-input" for="foobar"><input type="checkbox" name="sb_list_select[]" id="foobar" value="foobar" checked /> %s</label>',
+					$L->get( 'Ignore This' )
+				);
+				?>
+				</div>
+			</div>
+		</div>
 	</div>
 	<?php if ( count_widgets() > 0 ) : ?>
 
@@ -278,6 +364,24 @@ jQuery(document).ready( function($) {
 			$( '#widget-list-wrap' ).css( 'display', 'block' );
 		} else if ( 'false' == show ) {
 			$( '#widget-list-wrap' ).css( 'display', 'none' );
+		}
+	});
+
+	// Show/hide users list limit.
+	$( '#sb_list_display' ).on( 'change', function() {
+		var show = $(this).val();
+		if ( 'limit' == show ) {
+			$( '#sb_list_select_wrap' ).css( 'display', 'none' );
+			$( '#sb_list_role_wrap' ).css( 'display', 'flex' );
+			$( '#sb_list_limit_wrap' ).css( 'display', 'flex' );
+		} else if ( 'select' == show ) {
+			$( '#sb_list_limit_wrap' ).css( 'display', 'none' );
+			$( '#sb_list_role_wrap' ).css( 'display', 'none' );
+			$( '#sb_list_select_wrap' ).css( 'display', 'flex' );
+		} else {
+			$( '#sb_list_limit_wrap' ).css( 'display', 'none' );
+			$( '#sb_list_role_wrap' ).css( 'display', 'flex' );
+			$( '#sb_list_select_wrap' ).css( 'display', 'none' );
 		}
 	});
 });

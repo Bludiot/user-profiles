@@ -21,6 +21,7 @@ use function UPRO_Func\{
 	user,
 	usernames,
 	user_posts,
+	users_list_min_role,
 	has_social,
 	default_socials,
 	user_socials,
@@ -523,9 +524,26 @@ function users_list( $args = null, $defaults = [] ) {
 	);
 
 	$users = usernames();
+	if ( 'select' == plugin()->sb_list_display() ) {
+		$users = plugin()->sb_list_select();
+	}
 	asort( $users );
 
+	$count = 0;
 	foreach ( $users as $user ) {
+		$count++;
+
+		if ( 'select' != plugin()->sb_list_display() ) {
+			if ( ! in_array( role( $user ), users_list_min_role() ) ) {
+				continue;
+			}
+		}
+
+		if ( 'limit' == plugin()->sb_list_display() ) {
+			if ( $count > plugin()->sb_list_limit() ) {
+				break;
+			}
+		}
 
 		$html .= '<li class="user-list-entry">';
 		if ( $args['avatars'] ) {
@@ -551,7 +569,10 @@ function users_list( $args = null, $defaults = [] ) {
 	if ( $args['wrap'] ) {
 		$html .= '</div>';
 	}
-	return $html;
+	if ( ! empty( plugin()->sb_list_select() ) ) {
+		return $html;
+	}
+	return null;
 }
 
 /**

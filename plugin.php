@@ -184,7 +184,10 @@ class User_Profiles extends Plugin {
 			'sidebar_list'        => true,
 			'sb_list_label'       => $L->get( 'Authors' ),
 			'sb_list_avatar'      => true,
-			'sb_list_sort'        => 'abc',
+			'sb_list_display'     => 'all',
+			'sb_list_role'        => 'author',
+			'sb_list_limit'       => 12,
+			'sb_list_select'      => [ 'foobar' ],
 			'sb_widgets_sort'     => 'posts,list'
 		];
 		$fields = array_merge( $dynamic_fields, $static_fields );
@@ -914,8 +917,33 @@ class User_Profiles extends Plugin {
 	}
 
 	// @return string
-	public function sb_list_sort() {
-		return $this->getValue( 'sb_list_sort' );
+	public function sb_list_display() {
+		return $this->getValue( 'sb_list_display' );
+	}
+
+	// @return string
+	public function sb_list_role() {
+		return $this->getValue( 'sb_list_role' );
+	}
+
+	// @return integer
+	public function sb_list_limit() {
+		return $this->getValue( 'sb_list_limit' );
+	}
+
+	// @return array
+	public function sb_list_select() {
+
+		$select   = $this->getValue( 'sb_list_select' );
+		$filtered = [];
+
+		foreach ( $select as $user ) {
+			if ( 'foobar' == $user ) {
+				continue;
+			}
+			$filtered[] = $user;
+		}
+		return $filtered;
 	}
 
 	// @return array
