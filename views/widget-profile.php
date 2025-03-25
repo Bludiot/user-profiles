@@ -42,7 +42,7 @@ if ( strlen( $bio ) > plugin()->sb_bio_limit() ) {
 
 	$bio  = $end ? substr( $cut, 0, $end ) : substr( $cut, 0 );
 	$bio .= sprintf(
-		'&hellip; <a href="%s">%s</a>',
+		'&hellip; <br /><a href="%s">%s</a>',
 		user_link( $username ),
 		lang()->get( 'Read Profile' )
 	);
