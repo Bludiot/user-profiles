@@ -1,6 +1,6 @@
 # User Profiles
 
-Bludit CMS plugin that provides an author bio for posts, pages, and sidebar.
+Bludit CMS plugin that provides an author bio for posts, pages, and sidebar. Also sidebar widgets for a users list and for more posts by the page author.
 
 The plugin was designed to augment the Configure 8 theme but can be used with other themes. However, user profile pages will likely not work without modifications to the theme which provide a page template specific to users. A user profile page does not instantiate the Page class to access it's methods (e.g. No cover image, no content).
 
