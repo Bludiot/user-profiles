@@ -5,8 +5,8 @@
 	"version"      : "1.0.0",
 	"releaseDate"  : "",
 	"license"      : "",
-	"compatible"   : "3.16.0",
+	"compatible"   : "3.16.2",
 	"notes"        : "",
 	"theme_compat" : [ "configureight" ],
-	"theme_desc"   : "The User Profiles plugin adds fields for user profiles, including a bio. Optionally adds author details to post/page content. User profile pages are offered by compatible themes and two sidebar widgets are available."
+	"theme_desc"   : "The User Profiles plugin adds fields for user profiles, including a bio. Optionally adds author details to post/page content. User profile pages are offered for compatible themes, and three sidebar widgets are available."
 }
