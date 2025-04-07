@@ -20,7 +20,7 @@ use function UPRO_Func\{
 };
 
 // Guide page URL.
-$guide_page = DOMAIN_ADMIN . 'plugin/User_Profiles';
+$guide_page = DOMAIN_ADMIN . 'plugin/' . $this->className();
 
 // Section heading element depending on admin theme.
 $sec_h_el = 'h3';
@@ -120,7 +120,6 @@ if ( 'configureight' === site()->adminTheme() ) {
 	<div id="widgets" class="tab-pane fade show mt-4" role="tabpanel" aria-labelledby="nav-widgets-tab">
 		<?php include( $this->phpPath() . '/views/fields-widget.php' ); ?>
 	</div>
-
 </div>
 
 <script>
