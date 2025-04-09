@@ -128,9 +128,9 @@ $( function() {
 	$( 'a[data-toggle="tab"]' ).on( 'click', function(e) {
 		window.localStorage.setItem( 'profiles_active_tab', $( e.target ).attr( 'href' ) );
 	});
-	var profiles_active_tab = window.localStorage.getItem( 'profiles_active_tab' );
-	if ( profiles_active_tab ) {
-		$( '#nav-tab a[href="' + profiles_active_tab + '"]' ).tab( 'show' );
+	var active_tab = window.localStorage.getItem( 'profiles_active_tab' );
+	if ( active_tab ) {
+		$( '#nav-tab a[href="' + active_tab + '"]' ).tab( 'show' );
 		window.localStorage.removeItem( 'profiles_active_tab' );
 	}
 });

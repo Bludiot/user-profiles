@@ -41,3 +41,17 @@ $form_page = DOMAIN_ADMIN . 'configure-plugin/' . $this->className();
 		<?php include( $this->phpPath() . '/views/info-widgets.php' ); ?>
 	</div>
 </div>
+
+<script>
+// Open current tab after refresh page.
+$( function() {
+	$( 'a[data-toggle="tab"]' ).on( 'click', function(e) {
+		window.localStorage.setItem( 'profiles_guide_active_tab', $( e.target ).attr( 'href' ) );
+	});
+	var active_tab = window.localStorage.getItem( 'profiles_guide_active_tab' );
+	if ( active_tab ) {
+		$( '#nav-tab a[href="' + active_tab + '"]' ).tab( 'show' );
+		window.localStorage.removeItem( 'profiles_guide_active_tab' );
+	}
+});
+</script>
