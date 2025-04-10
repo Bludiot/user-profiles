@@ -114,7 +114,7 @@ class User_Profiles extends Plugin {
 	public function get_files() {
 
 		// Plugin path.
-		$path = PATH_PLUGINS . 'user-profiles' . DS;
+		$path = PATH_PLUGINS . $this->directoryName . DS;
 
 		// Get plugin functions.
 		foreach ( glob( $path . 'includes/*.php' ) as $filename ) {
@@ -217,10 +217,6 @@ class User_Profiles extends Plugin {
 	 */
 	public function install( $position = 100 ) {
 
-		// Create workspace.
-		$workspace = $this->workspace();
-		mkdir( $workspace, DIR_PERMISSIONS, true );
-
 		// Create plugin directory for the database
 		mkdir( PATH_PLUGINS_DATABASES . $this->directoryName, DIR_PERMISSIONS, true );
 
@@ -260,10 +256,6 @@ class User_Profiles extends Plugin {
 		// Delete database.
 		$path = PATH_PLUGINS_DATABASES . $this->directoryName;
 		Filesystem :: deleteRecursive( $path );
-
-		// Delete workspace.
-		$workspace = $this->workspace();
-		Filesystem :: deleteRecursive( $workspace );
 
 		return true;
 	}
