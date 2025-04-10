@@ -517,6 +517,10 @@ function sidebar_users_list()  {
 		$args = array_merge( $args, [ 'label_el' => $label_el ] );
 	}
 
+	if ( plugin()->profile_pages() ) {
+		$args['links'] = true;
+	}
+
 	if ( ! plugin()->sb_list_avatar() ) {
 		$args['avatars'] = false;
 	}

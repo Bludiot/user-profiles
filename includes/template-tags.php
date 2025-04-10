@@ -480,7 +480,7 @@ function users_list( $args = null, $defaults = [] ) {
 		'list_class' => 'users-list standard-users-list',
 		'label'      => false,
 		'label_el'   => 'h2',
-		'links'      => true,
+		'links'      => false,
 		'avatars'    => true,
 		'sort_by'    => 'abc' // abc or date
 	];
