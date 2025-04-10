@@ -174,6 +174,7 @@ class User_Profiles extends Plugin {
 			'profile_posts'       => true,
 			'profile_limit'       => 6,
 			'sidebar_bio'         => false,
+			'sb_bio_display'      => 'post',
 			'sb_bio_limit'        => 200,
 			'widgets_label'       => 'h2',
 			'sidebar_avatar'      => true,
@@ -865,6 +866,11 @@ class User_Profiles extends Plugin {
 	// @return boolean
 	public function sidebar_bio() {
 		return $this->getValue( 'sidebar_bio' );
+	}
+
+	// @return string
+	public function sb_bio_display() {
+		return $this->getValue( 'sb_bio_display' );
 	}
 
 	// @return integer

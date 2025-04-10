@@ -15,6 +15,7 @@ use function UPRO_Func\{
 	page,
 	user,
 	has_social,
+	sidebar_profile_display,
 	autop
 };
 use function UPRO_Tags\{
@@ -25,8 +26,9 @@ use function UPRO_Tags\{
 	social_list
 };
 
-if ( 'page' == $url->whereAmI() ) :
-if ( ! page()->isStatic() ) :
+if ( ! sidebar_profile_display() ) {
+	return;
+}
 
 // User variables.
 $username = page()->username();
@@ -112,6 +114,3 @@ if ( plugin()->profile_pages() ) {
 	</div>
 	<?php endif; ?>
 </div>
-<?php
-endif;
-endif;

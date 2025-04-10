@@ -462,6 +462,36 @@ function content_filter() {
 }
 
 /**
+ * Sidebar profile display
+ *
+ * Whether to display the profile widget
+ * on an individual page.
+ *
+ * @since  1.0.0
+ * @return boolean
+ */
+function sidebar_profile_display() {
+
+	if ( 'page' != url()->whereAmI() ) {
+		return false;
+	}
+
+	if ( 'post' == plugin()->sb_bio_display() ) {
+		if ( page()->isStatic() ) {
+			return false;
+		}
+		return true;
+
+	} elseif ( 'page' == plugin()->sb_bio_display() ) {
+		if ( ! page()->isStatic() ) {
+			return false;
+		}
+		return true;
+	}
+	return true;
+}
+
+/**
  * Sidebar list
  *
  * @since  1.0.0

@@ -78,6 +78,21 @@ code.user-select {
 	<div id="widget-profile-wrap" style="display: <?php echo ( $this->getValue( 'sidebar_bio' ) === true ? 'block' : 'none' ); ?>;">
 
 		<div class="form-field form-group row">
+			<label class="form-label col-sm-2 col-form-label" for="sb_bio_display"><?php $L->p( 'Profile Location' ); ?></label>
+			<div class="col-sm-10">
+				<select class="form-select" id="sb_bio_display" name="sb_bio_display">
+
+					<option value="post" <?php echo ( $this->getValue( 'sb_bio_display' ) === 'post' ? 'selected' : '' ); ?>><?php $L->p( 'Posts' ); ?></option>
+
+					<option value="page" <?php echo ( $this->getValue( 'sb_bio_display' ) === 'page' ? 'selected' : '' ); ?>><?php $L->p( 'Pages' ); ?></option>
+
+					<option value="both" <?php echo ( $this->getValue( 'sb_bio_display' ) === 'both' ? 'selected' : '' ); ?>><?php $L->p( 'Posts & Pages' ); ?></option>
+				</select>
+				<small class="form-text"><?php $L->p( 'Page types on which to display the profile widget. Posts include sticky pages.' ); ?></small>
+			</div>
+		</div>
+
+		<div class="form-field form-group row">
 			<label class="form-label col-sm-2 col-form-label" for="sidebar_avatar"><?php $L->p( 'Author Avatar' ); ?></label>
 			<div class="col-sm-10">
 				<select class="form-select" id="sidebar_avatar" name="sidebar_avatar">
