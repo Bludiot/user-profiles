@@ -57,9 +57,9 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 		<div class="col-sm-10">
 			<select class="form-select" id="profile_pages" name="profile_pages">
 
-				<option value="true" <?php echo ( $this->getValue( 'profile_pages' ) === true ? 'selected' : '' ); ?>><?php $L->p( 'Enable' ); ?></option>
+				<option value="true" <?php echo ( $this->getValue( 'profile_pages' ) === true ? 'selected' : '' ); ?>><?php $L->p( 'Enabled' ); ?></option>
 
-				<option value="false" <?php echo ( $this->getValue( 'profile_pages' ) === false ? 'selected' : '' ); ?>><?php $L->p( 'Disable' ); ?></option>
+				<option value="false" <?php echo ( $this->getValue( 'profile_pages' ) === false ? 'selected' : '' ); ?>><?php $L->p( 'Disabled' ); ?></option>
 			</select>
 			<small class="form-text"><?php $L->p( 'Whether to allow user profile pages and include links.' ); ?></small>
 		</div>
