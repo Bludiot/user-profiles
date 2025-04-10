@@ -162,7 +162,7 @@ class User_Profiles extends Plugin {
 			'cover_large_width'   => 1920,
 			'cover_large_height'  => 1080,
 			'cover_large_quality' => 90,
-			'profile_pages'       => true,
+			'profile_pages'       => false,
 			'header_style'        => 'one',
 			'bio_avatar_radius'   => 10,
 			'bio_heading'         => '',
