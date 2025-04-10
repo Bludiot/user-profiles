@@ -41,11 +41,15 @@ if ( strlen( $bio ) > plugin()->sb_bio_limit() ) {
 	$end = strrpos( $cut, ' ' );
 
 	$bio  = $end ? substr( $cut, 0, $end ) : substr( $cut, 0 );
-	$bio .= sprintf(
-		'&hellip; <br /><a href="%s">%s</a>',
-		user_link( $username ),
-		lang()->get( 'Read Profile' )
-	);
+	if ( plugin()->profile_pages() ) {
+		$bio .= sprintf(
+			'&hellip; <br /><a href="%s">%s</a>',
+			user_link( $username ),
+			lang()->get( 'Read Profile' )
+		);
+	} else {
+		$bio .= '&hellip;';
+	}
 }
 
 // Heading element(s).
@@ -102,11 +106,11 @@ if ( plugin()->profile_pages() ) {
 	</div>
 	<?php endif; ?>
 
+	<?php if ( ! empty( $bio ) ) : ?>
 	<div id="sidebar-author-bio" class="author-info-bio author-widget-bio">
-		<?php if ( plugin()->profile_pages() ) {
-			echo htmlspecialchars_decode( autop( $bio ) );
-		} ?>
+		<?php echo htmlspecialchars_decode( autop( $bio ) ); ?>
 	</div>
+	<?php endif; ?>
 </div>
 <?php
 endif;
