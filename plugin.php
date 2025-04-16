@@ -464,7 +464,7 @@ class User_Profiles extends Plugin {
 		} else {
 			$html = sprintf(
 				'<a class="nav-link" href="%s"><span class="fa fa-users"></span>%s</a>',
-				$url,
+				$form,
 				$L->get( 'User Profiles' )
 			);
 		}
