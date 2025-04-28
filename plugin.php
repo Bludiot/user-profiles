@@ -691,7 +691,6 @@ class User_Profiles extends Plugin {
 	public function user_profile_content() {
 
 		$html  = '';
-		var_dump( theme_compat() );
 		include( $this->phpPath() . '/views/profile.php' );
 		$html .= ob_get_clean();
 
