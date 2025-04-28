@@ -153,6 +153,37 @@ function user( $name = '' ) {
 }
 
 /**
+ * Theme compatibility
+ *
+ * Checks the active theme metadata file for
+ * `"profiles" : true`
+ *
+ * @since  1.0.0
+ * @global object $site The Site class.
+ * @return boolean
+ */
+function theme_compat() {
+
+	// Access global variables.
+	global $site;
+
+	$get_meta = PATH_THEMES . $site->theme() . DS . 'metadata.json';
+	$metadata = file_get_contents( $get_meta );
+
+	if ( ! $metadata ) {
+		return false;
+	}
+	$theme = json_decode( $metadata, true );
+
+	if ( is_array( $theme ) && array_key_exists( 'profiles', $theme ) ) {
+		if ( $theme['profiles'] ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
  * Profile fields
  *
  * Generate an associative array of user

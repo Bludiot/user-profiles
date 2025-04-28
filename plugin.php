@@ -16,6 +16,7 @@ if ( ! defined( 'BLUDIT' ) ) {
 
 // Access namespaced functions.
 use function UPRO_Func\{
+	theme_compat,
 	usernames,
 	profile_fields,
 	content_filter,
@@ -690,7 +691,7 @@ class User_Profiles extends Plugin {
 	public function user_profile_content() {
 
 		$html  = '';
-		ob_start();
+		var_dump( theme_compat() );
 		include( $this->phpPath() . '/views/profile.php' );
 		$html .= ob_get_clean();
 
