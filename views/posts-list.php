@@ -54,12 +54,18 @@ if ( $theme ) {
 <div class="profile-loop profile-loop-style-<?php echo $loop_style; ?>">
 	<?php foreach ( $user_posts as $key ) :
 	$post = buildPage( $key );
+
+	// Post thumbnail.
+	$thumb = plugin()->domainPath() . 'assets/images/camera.png';
+	if ( ! empty( $post->thumbCoverImage() ) && @file_get_contents( $post->thumbCoverImage() ) ) {
+		$thumb = $post->thumbCoverImage();
+	}
 	?>
 	<article class="profile-post">
 		<?php if ( $post->coverImage() ) : ?>
 		<a href="<?php echo $post->permalink(); ?>">
 			<figure class="profile-post-cover">
-				<img class="<?php echo $cover_image_class; ?>" src="<?php echo $post->thumbCoverImage(); ?>" alt="">
+				<img class="<?php echo $cover_image_class; ?>" src="<?php echo $thumb; ?>" alt="">
 			</figure>
 		</a>
 		<?php endif; ?>
