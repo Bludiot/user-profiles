@@ -959,7 +959,7 @@ class User_Profiles extends Plugin {
 	 * @access public
 	 * @global object $site Site class.
 	 * @global object $url The Url class.
-	 * @return mixed Returns the URL or false.
+	 * @return string Returns an image URL.
 	 */
 	public function cover_src( $name = '', $cropped = true ) {
 
@@ -986,6 +986,6 @@ class User_Profiles extends Plugin {
 		if ( file_exists( $album ) ) {
 			return $src;
 		}
-		return false;
+		return default_cover();
 	}
 }
