@@ -139,6 +139,15 @@ class Cover_Album extends Cover_Images {
 				$image
 			);
 		}
+		$db = plugin()->getValue( 'cover_' . $user );
+		$src   = DOMAIN_CONTENT . plugin()->storage_root . '/cover/' . $db[0];
+		if ( ! @file_get_contents( $src ) ) {
+			$html .= sprintf(
+				'<li class="screen-reader-text"><label for="no-image-found">%s<input id="no-image-found" type="radio" name="cover_%s[]" value="" checked="checked" /></label></li>',
+				$L->get( 'Database image not found' ),
+				$user
+			);
+		}
 		$html .= '</ul>';
 
 		if ( 0 == $count ) {

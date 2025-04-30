@@ -30,10 +30,10 @@ class User_Profiles extends Plugin {
 	 * Storage root
 	 *
 	 * @since  1.0.0
-	 * @access private
+	 * @access public
 	 * @var    string
 	 */
-	private $storage_root = 'user-profiles';
+	public $storage_root = 'user-profiles';
 
 	/**
 	 * Cache age
@@ -972,6 +972,8 @@ class User_Profiles extends Plugin {
 		if ( ! $cover || ! is_array( $cover ) ) {
 			return default_cover();
 		} elseif ( ! isset( $cover[0] ) ) {
+			return default_cover();
+		} elseif ( empty( $cover[0] ) ) {
 			return default_cover();
 		}
 
