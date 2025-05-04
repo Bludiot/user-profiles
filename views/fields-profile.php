@@ -22,13 +22,6 @@ use function UPRO_Tags\{
 	default_avatar
 };
 
-// Helper.
-if ( BLUDIT_VERSION >= '4.0.0' ) {
-	$helper = 'execPluginsByHook( \'user_profile_content\' );';
-} else {
-	$helper = 'Theme::plugins( \'user_profile_content\' );';
-}
-
 $user   = user( 'admin' );
 $name   = $user->username();
 $header = plugin()->header_style();
