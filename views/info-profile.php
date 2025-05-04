@@ -45,6 +45,8 @@ if ( BLUDIT_VERSION >= '4.0.0' ) {
 
 <p><?php lang()->p( 'The User Profiles plugin adds user information fields and provides several optional ways to display user details, including a profile page for each registered user.' ); ?></p>
 
+<p><?php lang()->p( 'The URL slug for user profile pages can be customized (e.g. `site/members/user` or `site/staff/user`).' ); ?></p>
+
 <h3 class="form-heading"><?php $L->p( 'Profile Pages' ); ?></h3>
 
 <p><?php lang()->p( 'The user profile pages need custom development of the active theme to display them, even with the setting enabled. The profile content is called with the following hook.' ); ?></p>
@@ -68,12 +70,6 @@ if ( 'profile' == $url->whereAmI() ) {
 } else {
 	echo include( THEME_DIR . 'template/path/page.php' );
 } ?&gt;</pre>
-
-<p><?php lang()->p( '' ); ?></p>
-<p><?php lang()->p( '' ); ?></p>
-<p><?php lang()->p( '' ); ?></p>
-<p><?php lang()->p( '' ); ?></p>
-<p><?php lang()->p( '' ); ?></p>
 
 <h3 class="form-heading"><?php $L->p( 'User Settings' ); ?></h3>
 
