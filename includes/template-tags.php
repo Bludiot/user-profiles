@@ -165,9 +165,15 @@ function user_display_name( $name = '' ) {
  *
  * @since  1.0.0
  * @param  string $name Username
- * @return string
+ * @return mixed Returns the profile link or false
+ *               if profiles are not enabled.
  */
 function user_link( $user = '' ) {
+
+	if ( ! plugin()->profile_pages() ) {
+		return false;
+	}
+
 	return sprintf(
 		'%s%s/%s',
 		site()->url(),

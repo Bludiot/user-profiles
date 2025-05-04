@@ -80,7 +80,7 @@ if ( BLUDIT_VERSION >= '4.0.0' ) {
 <code>&lt;php UPRO_Func\user_display_name( $name ); ?&gt;</code></p>
 
 <h3 class="form-heading"><?php $L->p( 'Profile Link' ); ?></h3>
-<p><?php lang()->p( 'Returns the URL to the frontend profile of the specified user.' ); ?><br />
+<p><?php lang()->p( 'Returns the URL to the frontend profile of the specified user, or false if profiles are not enabled.' ); ?><br />
 <code>&lt;php UPRO_Tags\user_link( $name ); ?&gt;</code></p>
 
 <h3 class="form-heading"><?php $L->p( 'User Avatar' ); ?></h3>
