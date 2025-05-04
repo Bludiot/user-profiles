@@ -158,7 +158,7 @@ function user_display_name( $name = '' ) {
 }
 
 /**
- * User link
+ * Profile link
  *
  * The URL to the frontend profile
  * of the specified user.
@@ -278,7 +278,7 @@ function details_heading( $name = '' ) {
 /**
  * Formatted bio
  *
- * Print a user bio with paragraphs and line breaks,
+ * Returns a user bio with paragraphs and line breaks.
  *
  * @since  1.0.0
  * @param  string $name
@@ -394,11 +394,12 @@ function social_list( $name = '' ) {
  *
  * @since  1.0.0
  * @param  string $template The full path to the author box template.
+ * @param  boolean $tabbed Wether to return a tabbed section.
  * @return string Returns the author box markup.
  */
-function author_box( $template = '' ) {
+function author_box( $template = '', $tabbed = false ) {
 
-	if ( plugin()->author_tabbed() ) {
+	if ( plugin()->author_tabbed() || true == $tabbed ) {
 		$template = plugin()->phpPath() . '/views/author-box-tabbed.php';
 	} else {
 		$template = plugin()->phpPath() . '/views/author-box.php';
