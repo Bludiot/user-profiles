@@ -43,7 +43,7 @@ if ( ! defined( 'BLUDIT' ) ) {
  * @param  string $return Role name or title.
  * @return string
  */
-function role( $name = '', $return = 'role' ) {
+function role( $name = 'reader', $return = 'role' ) {
 
 	// Get the user object.
 	$get = user( $name );
