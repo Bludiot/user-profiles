@@ -25,6 +25,8 @@ $form_page = DOMAIN_ADMIN . 'configure-plugin/' . $this->className();
 		<a class="nav-item nav-link" id="nav-author-tab" data-toggle="tab" href="#author" role="tab" aria-controls="nav-author" aria-selected="false"><?php $L->p( 'Author' ); ?></a>
 
 		<a class="nav-item nav-link" id="nav-widgets-tab" data-toggle="tab" href="#widgets" role="tab" aria-controls="nav-widgets" aria-selected="false"><?php $L->p( 'Widgets' ); ?></a>
+
+		<a class="nav-item nav-link" id="nav-functions-tab" data-toggle="tab" href="#functions" role="tab" aria-controls="nav-functions" aria-selected="false"><?php $L->p( 'Functions' ); ?></a>
 	</div>
 </nav>
 
@@ -39,6 +41,10 @@ $form_page = DOMAIN_ADMIN . 'configure-plugin/' . $this->className();
 
 	<div id="widgets" class="tab-pane fade show mt-4" role="tabpanel" aria-labelledby="nav-widgets-tab">
 		<?php include( $this->phpPath() . '/views/info-widgets.php' ); ?>
+	</div>
+
+	<div id="functions" class="tab-pane fade show mt-4" role="tabpanel" aria-labelledby="nav-functions-tab">
+		<?php include( $this->phpPath() . '/views/info-functions.php' ); ?>
 	</div>
 </div>
 
