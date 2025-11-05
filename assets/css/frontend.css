@@ -73,8 +73,7 @@
   font-weight: var(--upro-tabs--list--link--font-weight, var(--cfe-display--font-weight));
   font-style: var(--upro-tabs--list--link--font-style, normal);
   font-variant: var(--upro-tabs--list--link--font-variant);
-  -webkit-text-decoration: var(--upro-tabs--list--link--text-decoration, none);
-          text-decoration: var(--upro-tabs--list--link--text-decoration, none);
+  text-decoration: var(--upro-tabs--list--link--text-decoration, none);
   text-transform: var(--upro-tabs--list--link--text-transform, capitalize);
   letter-spacing: var(--upro-tabs--list--link--letter-spacing, var(--cfe-display--letter-spacing));
   word-spacing: var(--upro-tabs--list--link--word-spacing, normal);
@@ -287,10 +286,8 @@ ul + .author-info-tabbed + .author-info-tabbed {
   width: 100%;
   height: 100%;
   max-height: var(--upro-profile--cover--height, 240px);
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center center;
-     object-position: center center;
+  object-fit: cover;
+  object-position: center center;
 }
 .profile-page .profile-page-header .profile-intro {
   display: var(--upro-profile--intro--display);
@@ -429,8 +426,7 @@ ul + .author-info-tabbed + .author-info-tabbed {
   line-height: var(--upro-heading-secondary--line-height);
   letter-spacing: var(--upro-heading-secondary--letter-spacing);
   word-spacing: var(--upro-heading-secondary--word-spacing);
-  -webkit-text-decoration: var(--upro-heading-secondary--text-decoration);
-          text-decoration: var(--upro-heading-secondary--text-decoration);
+  text-decoration: var(--upro-heading-secondary--text-decoration);
   text-transform: var(--upro-heading-secondary--text-transform);
   color: var(--upro-heading-secondary--text-color, var(--upro-body--text-color));
 }
@@ -467,8 +463,7 @@ ul + .author-info-tabbed + .author-info-tabbed {
   display: block;
   width: 80px;
   height: 80px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .profile-loop-style-list .profile-post-cover img.desaturate {
   filter: grayscale(var(--upro-cover-img--grayscale, 0%));
@@ -490,8 +485,7 @@ ul + .author-info-tabbed + .author-info-tabbed {
   line-height: var(--upro-heading-secondary--line-height);
   letter-spacing: var(--upro-heading-secondary--letter-spacing);
   word-spacing: var(--upro-heading-secondary--word-spacing);
-  -webkit-text-decoration: var(--upro-heading-secondary--text-decoration);
-          text-decoration: var(--upro-heading-secondary--text-decoration);
+  text-decoration: var(--upro-heading-secondary--text-decoration);
   text-transform: var(--upro-heading-secondary--text-transform);
 }
 .profile-loop-style-list .profile-post-title a {
@@ -539,8 +533,7 @@ ul + .author-info-tabbed + .author-info-tabbed {
   display: block;
   width: 100%;
   height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transform: scale(100%);
   transition: transform 0.25s ease-in-out;
 }
@@ -577,8 +570,7 @@ ul + .author-info-tabbed + .author-info-tabbed {
   line-height: 1.2;
   letter-spacing: var(--upro-heading-secondary--letter-spacing);
   word-spacing: var(--upro-heading-secondary--word-spacing);
-  -webkit-text-decoration: var(--upro-heading-secondary--text-decoration);
-          text-decoration: var(--upro-heading-secondary--text-decoration);
+  text-decoration: var(--upro-heading-secondary--text-decoration);
   text-transform: var(--upro-heading-secondary--text-transform);
   text-align: center;
   opacity: 1;
