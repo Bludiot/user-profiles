@@ -44,6 +44,8 @@ use function UPRO_Func\{
 			<div class="col-sm-10">
 				<select class="form-select" id="author_location" name="author_location">
 
+					<option value="author_box" <?php echo ( $this->getValue( 'author_location' ) === 'author_box' ? 'selected' : '' ); ?>><?php $L->p( 'Use `author_box` hook.' ); ?></option>
+
 					<option value="after" <?php echo ( $this->getValue( 'author_location' ) === 'after' ? 'selected' : '' ); ?>><?php $L->p( 'After Content' ); ?></option>
 
 					<option value="before" <?php echo ( $this->getValue( 'author_location' ) === 'before' ? 'selected' : '' ); ?>><?php $L->p( 'Before Content' ); ?></option>

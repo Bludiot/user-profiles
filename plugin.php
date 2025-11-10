@@ -23,6 +23,9 @@ use function UPRO_Func\{
 	default_cover,
 	autop
 };
+use function UPRO_Tags\{
+	author_box
+};
 
 class User_Profiles extends Plugin {
 
@@ -196,6 +199,7 @@ class User_Profiles extends Plugin {
 
 		// Array of custom hooks.
 		$this->customHooks = [
+			'author_box',
 			'user_profile_before',
 			'user_profile_content',
 			'user_profile_after'
@@ -617,6 +621,23 @@ class User_Profiles extends Plugin {
 
 		// Filter page content to add profile.
 		content_filter();
+	}
+
+	/**
+	 * Author box hook
+	 *
+	 * Plugin hook for custom theme location.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return boolean
+	 */
+	public function author_box() {
+
+		if ( 'author_box' == $this->author_location() ) {
+			echo author_box();
+		}
+		return false;
 	}
 
 	/**

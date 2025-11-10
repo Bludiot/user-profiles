@@ -296,7 +296,9 @@ function author_display() {
 
 	$location = plugin()->author_display();
 
-	if ( page()->draft() || page()->autosave() ) {
+	if ( 'author_box' == plugin()->author_location() ){
+		$author = false;
+	} elseif ( page()->draft() || page()->autosave() ) {
 		$author = false;
 	} elseif ( page()->isStatic() && 'page' == $location ) {
 		$author = true;
