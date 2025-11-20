@@ -37,7 +37,7 @@ $bio      = plugin()->getValue( 'bio_' . $name );
 $limit    = plugin()->profile_limit();
 
 ?>
-<div id="author-box-wrap">
+<div id="author-box" class="author-box">
 
 	<div id="about-author" class="author-info-content author-info-padded" role="tabpanel" aria-labelledby="about-author">
 		<div class="author-info-details">

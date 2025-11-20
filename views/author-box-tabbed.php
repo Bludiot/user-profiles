@@ -38,7 +38,7 @@ $bio      = plugin()->getValue( 'bio_' . $name );
 $limit    = plugin()->profile_limit();
 
 ?>
-<div id="author-box-wrap" data-toggle="tabslet" data-deeplinking="false" data-animation="true">
+<div id="author-box" class="author-box" data-toggle="tabslet" data-deeplinking="false" data-animation="true">
 
 	<?php if ( plugin()->author_posts() && count( user_posts( $name ) ) > 1 ) : ?>
 	<ul class="nav nav-tabs" id="nav-tabs" role="tablist">
