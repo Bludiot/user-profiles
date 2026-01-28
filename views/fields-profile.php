@@ -46,6 +46,39 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 	<p><?php $L->p( 'Read the User Profiles guide for implementing profile pages in your theme.' ); ?></p>
 
 	<div class="form-field form-group row">
+		<label class="form-label col-sm-2 col-form-label" for="default_avatar"><?php $L->p( 'Default Avatar' ); ?></label>
+		<div class="col-sm-10">
+			<select class="form-select" id="default_avatar" name="default_avatar">
+
+				<?php foreach ( glob( $avatars_path . "*.{png,jpeg,jpeg,gif,svg,PNG,JPG,JPEG,GIF,SVG}", GLOB_BRACE ) as $default_avatar ) {
+
+					$avatar_id = str_replace( '.', '', basename( $default_avatar, pathinfo( $default_avatar, PATHINFO_EXTENSION ) ) );
+
+					printf(
+						'<option value="%s"%s>%s</option>',
+						$avatar_id,
+						( $avatar_id == $this->getValue( 'default_avatar' ) ? ' selected' : '' ),
+						ucwords( str_replace( [ '-', '_' ], ' ', $avatar_id ) )
+					);
+				} ?>
+				<option value="custom" <?php echo ( $this->getValue( 'default_avatar' ) === 'custom' ? ' selected' : '' ); ?>><?php $L->p( 'Custom' ); ?></option>
+			</select>
+			<small class="form-text"><?php $L->p( 'Choose the fallback avatar for users without a profile image.' ); ?></small>
+			<?php
+			foreach ( glob( $avatars_path . "*.{png,jpeg,jpeg,gif,svg,PNG,JPG,JPEG,GIF,SVG}", GLOB_BRACE ) as $default_avatar ) :
+
+				$avatar_src = plugin()->domainPath() . 'assets/images/avatars/' . basename( $default_avatar );
+				$avatar_id  = str_replace( '.', '', basename( $default_avatar, pathinfo( $default_avatar, PATHINFO_EXTENSION ) ) );
+
+			?>
+			<figure id="<?php echo $avatar_id; ?>" class="default-avatar-preview" style="display: <?php echo( $avatar_id == $this->default_avatar() ? 'block' : 'none' ); ?>;">
+				<img class="avatar" src="<?php echo $avatar_src; ?>" width="80" height="80" />
+			</figure>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<div class="form-field form-group row">
 		<label class="form-label col-sm-2 col-form-label" for="profile_pages"><?php $L->p( 'Profile Pages' ); ?></label>
 		<div class="col-sm-10">
 			<select class="form-select" id="profile_pages" name="profile_pages">
@@ -68,39 +101,6 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 			</div>
 		</div>
 
-		<div class="form-field form-group row">
-			<label class="form-label col-sm-2 col-form-label" for="default_avatar"><?php $L->p( 'Default Avatar' ); ?></label>
-			<div class="col-sm-10">
-				<select class="form-select" id="default_avatar" name="default_avatar">
-
-					<?php foreach ( glob( $avatars_path . "*.{png,jpeg,jpeg,gif,svg,PNG,JPG,JPEG,GIF,SVG}", GLOB_BRACE ) as $default_avatar ) {
-
-						$avatar_id = str_replace( '.', '', basename( $default_avatar, pathinfo( $default_avatar, PATHINFO_EXTENSION ) ) );
-
-						printf(
-							'<option value="%s"%s>%s</option>',
-							$avatar_id,
-							( $avatar_id == $this->getValue( 'default_avatar' ) ? ' selected' : '' ),
-							ucwords( str_replace( [ '-', '_' ], ' ', $avatar_id ) )
-						);
-					} ?>
-					<option value="custom" <?php echo ( $this->getValue( 'default_avatar' ) === 'custom' ? ' selected' : '' ); ?>><?php $L->p( 'Custom' ); ?></option>
-				</select>
-				<small class="form-text"><?php $L->p( 'Choose the fallback avatar for users without a profile image.' ); ?></small>
-				<?php
-				foreach ( glob( $avatars_path . "*.{png,jpeg,jpeg,gif,svg,PNG,JPG,JPEG,GIF,SVG}", GLOB_BRACE ) as $default_avatar ) :
-
-					$avatar_src = plugin()->domainPath() . 'assets/images/avatars/' . basename( $default_avatar );
-					$avatar_id  = str_replace( '.', '', basename( $default_avatar, pathinfo( $default_avatar, PATHINFO_EXTENSION ) ) );
-
-				?>
-				<figure id="<?php echo $avatar_id; ?>" class="default-avatar-preview" style="display: <?php echo( $avatar_id == $this->default_avatar() ? 'block' : 'none' ); ?>;">
-					<img class="avatar" src="<?php echo $avatar_src; ?>" width="80" height="80" />
-				</figure>
-				<?php endforeach; ?>
-			</div>
-		</div>
-
 		<div id="custom-avatar-wrap" class="form-field form-group row" style="display: <?php echo ( 'custom' === $this->getValue( 'default_avatar' ) ? 'flex' : 'none' ) ?>;">
 			<label class="form-label col-sm-2 col-form-label" for="custom_avatar"><?php $L->p( 'Custom Avatar' ); ?></label>
 			<div class="col-sm-10">
@@ -113,15 +113,20 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 							<a class="nav-link" role="tab" aria-controls="avatar-select" aria-selected="false" href="#avatar-select"><?php $L->p( 'Select' ); ?></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" role="tab" aria-controls="avatar-upload" aria-selected="false" href="#avatar-upload"><?php $L->p( 'Upload' ); ?></a>
+							<a class="nav-link" role="tab" aria-controls="avatar-album" aria-selected="false" href="#avatar-album"><?php $L->p( 'Album' ); ?><span><?php echo ' (' . $avatars->count_images() . ')'; ?></span></span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" role="tab" aria-controls="avatar-album" aria-selected="false" href="#avatar-album"><?php $L->p( 'Album' ); ?></a>
+							<a class="nav-link" role="tab" aria-controls="avatar-upload" aria-selected="false" href="#avatar-upload"><?php $L->p( 'Upload' ); ?><span id="avatar-images-count"></a>
 						</li>
 					</ul>
 					<div id="avatar-select" role="tabpanel" aria-labelledby="avatar-select">
 						<p><?php $L->p( 'Select one from uploaded avatar images.' ); ?></p>
 						<?php echo $avatars->select_images( $avatar ); ?>
+					</div>
+
+					<div id="avatar-album" class="tab-pane tab-pane-image-upload" role="tabpanel" aria-labelledby="avatar-album">
+						<p><?php $L->p( 'Manage uploaded avatar images.' ); ?></p>
+						<div id="avatar-album-wrap"><?php echo $avatars->manage_images( $avatar ); ?></div>
 					</div>
 
 					<div id="avatar-upload" class="tab-pane tab-pane-image-upload" role="tabpanel" aria-labelledby="avatar-upload">
@@ -135,11 +140,6 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 							<p><button class="button button-small btn btn-sm btn-primary" onClick="location.reload();"><?php $L->p( 'Refresh' ); ?></button></p>
 						</div>
 
-					</div>
-
-					<div id="avatar-album" class="tab-pane tab-pane-image-upload" role="tabpanel" aria-labelledby="avatar-album">
-						<p><?php $L->p( 'Manage uploaded avatar images.' ); ?></p>
-						<div id="avatar-album-wrap"><?php echo $avatars->manage_images( $avatar ); ?></div>
 					</div>
 				</div>
 			</div>
