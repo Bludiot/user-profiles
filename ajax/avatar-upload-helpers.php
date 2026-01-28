@@ -62,8 +62,7 @@ function deleteImage( $storage, $album, $file ) {
 
 	$cacheName = 'cache';
 	$dir = $storage . DS . $album;
-	@unlink( $dir . DS . $cacheName . DS . 'thumb' . DS . $file );  // delete thumbnail
-	@unlink( $dir . DS . $cacheName . DS . 'large' . DS . $file );  // delete large image
+	@unlink( $dir . DS . $cacheName . DS . 'avatar' . DS . $file );  // delete cache image
 	$success = unlink( $dir . DS . $file );                  // delete original image
 	@unlink( $dir . DS . $cacheName . DS . 'files.php' );       // clear files cache
 	@unlink( $storage . DS . 'cache' . DS . 'files.php' );       // clear global cache
