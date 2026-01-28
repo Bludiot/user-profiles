@@ -194,8 +194,11 @@ function default_avatar() {
 
 	$default = plugin()->default_avatar();
 	$custom  = plugin()->custom_avatar();
-	$path    = PATH_PLUGINS . 'user-profiles/assets/images/avatars' . DS;
-	$src     = '';
+	$path    = plugin()->phpPath() . '/assets/images/avatars' . DS;
+	$src     = sprintf(
+		'%s/assets/images/avatars/user.png',
+		plugin()->domainPath()
+	);
 
 	foreach ( glob( $path . "*.{png,jpeg,jpeg,gif,svg,PNG,JPG,JPEG,GIF,SVG}", GLOB_BRACE ) as $default_avatar ) :
 
@@ -206,8 +209,10 @@ function default_avatar() {
 		}
 	endforeach;
 
-	if ( 'custom' == $default ) {
-		$src = DOMAIN_CONTENT . 'user-profiles/avatar/cache/avatar/' . $custom[0];
+	if ( 'custom' == $default && array_key_exists( 0, $custom ) ) {
+		if ( file_exists( PATH_CONTENT . plugin()->directoryName() . '\avatar\cache\avatar\\' . $custom[0] ) ) {
+			$src = DOMAIN_CONTENT . plugin()->directoryName() . '/avatar/cache/avatar/' . $custom[0];
+		}
 	}
 	return $src;
 }
