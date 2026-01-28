@@ -170,7 +170,7 @@
   height: 100%;
 }
 .profile-cover-wrap:after {
-  background-color: var(--upro-profile--header--overlay--background-color, var(--cfe-cover-overlay--bg-color, rgba(0, 0, 0, 0.625)));
+  background-color: var(--upro-profile--header--overlay--background-color, var(--cfe-cover-overlay--bg-color, rgba(0, 0, 0, 0.5)));
 }
 .profile-cover-wrap.cover-blend:before {
   background-color: var(--cfe-cover-blend--bg-color);
