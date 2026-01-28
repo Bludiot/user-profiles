@@ -517,7 +517,7 @@ function users_list( $args = null, $defaults = [] ) {
 			$args['wrap_class']
 		);
 	}
-	if ( $args['label'] ) {
+	if ( $args['label_el'] ) {
 		$html .= sprintf(
 			'%1$s%2$s%3$s',
 			$label_el_open,
@@ -576,10 +576,7 @@ function users_list( $args = null, $defaults = [] ) {
 	if ( $args['wrap'] ) {
 		$html .= '</div>';
 	}
-	if ( ! empty( plugin()->sb_list_select() ) ) {
-		return $html;
-	}
-	return null;
+	return $html;
 }
 
 /**
