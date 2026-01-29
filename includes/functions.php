@@ -68,6 +68,21 @@ function url() {
 }
 
 /**
+ * Login class object
+ *
+ * Function to use inside other functions and
+ * methods rather than calling the global.
+ *
+ * @since  1.0.0
+ * @global object $login Login class
+ * @return object
+ */
+function login() {
+	global $login;
+	return $login;
+}
+
+/**
  * Language class object
  *
  * Function to use inside other functions and

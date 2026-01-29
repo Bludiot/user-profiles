@@ -12,6 +12,7 @@
 use function UPRO_Func\{
 	plugin,
 	site,
+	login,
 	lang,
 	page,
 	user_slug,
@@ -145,8 +146,21 @@ if ( $theme ) {
 						str_replace( [ 'http://', 'https://' ], '', rtrim( $website, '/\\' ) )
 					);
 				} ?>
+				<?php if ( has_social( $name ) && $show_social ) { echo social_list( $name ); } ?>
+
+				<?php if ( login()->isLogged() ) :
+					if (
+						user_slug() === login()->username() ||
+						'admin' === login()->role()
+					) {
+						printf(
+							'<li class="profile-details-list-edit"><a href="%s">%s</a></li>',
+							DOMAIN_ADMIN . 'edit-user/' . $name,
+							lang()->get( 'Edit Profile' )
+						);
+					}
+				endif; ?>
 			</ul>
-			<?php if ( has_social( $name ) && $show_social ) { echo social_list( $name ); } ?>
 		</div>
 
 		<div id="profile-page-bio" class="profile-page-bio">
