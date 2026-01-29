@@ -167,7 +167,7 @@ $avatars_path = plugin()->phpPath() . 'assets/images/avatars' . DS;
 					</ul>
 
 					<div id="cover-select" role="tabpanel" aria-labelledby="cover-select">
-						<p><?php $L->p( 'Select default cover from uploaded images.' ); ?></p>
+						<p><?php $L->p( 'Select default cover images from uploads. More than one selection will display as a random image from the selected.' ); ?></p>
 						<?php echo $covers->default_cover( $cover ); ?>
 					</div>
 					<div id="cover-album" class="tab-pane tab-pane-image-upload" role="tabpanel" aria-labelledby="cover-album">
@@ -432,8 +432,7 @@ jQuery(document).ready( function($) {
 
 	// Selected class for image uploads.
 	$( '.cover-select-label' ).click( function() {
-		$( '.cover-select-label' ).removeClass( 'selected' );
-		$(this).addClass( 'selected' );
+		$(this).toggleClass( 'selected' );
 	});
 });
 </script>

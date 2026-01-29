@@ -322,6 +322,7 @@ function author_display() {
 function default_cover( $cropped = true ) {
 
 	$default  = plugin()->default_cover();
+	$random   = plugin()->random_cover_image();
 	$fallback = plugin()->phpPath() . '/assets/images/transparent.png';
 	$src      = '';
 
@@ -331,12 +332,12 @@ function default_cover( $cropped = true ) {
 		return plugin()->domainPath() . '/assets/images/transparent.png';
 	}
 
-	if ( $cropped ) {
-		$album = PATH_CONTENT . 'user-profiles' . DS . 'cover' . DS . 'cache' . DS . 'large' . DS . $default[0];
-		$src   = DOMAIN_CONTENT . 'user-profiles' . '/cover/cache/large/' . $default[0];
-	} else {
-		$album = PATH_CONTENT . 'user-profiles' . DS . 'cover' . DS . $default[0];
-		$src   = DOMAIN_CONTENT . 'user-profiles' . '/cover/' . $default[0];
+	if ( $cropped && $random ) {
+		$album = PATH_CONTENT . 'user-profiles' . DS . 'cover' . DS . 'cache' . DS . 'large' . DS . $random;
+		$src   = DOMAIN_CONTENT . 'user-profiles' . '/cover/cache/large/' . $random;
+	} elseif ( $random ) {
+		$album = PATH_CONTENT . 'user-profiles' . DS . 'cover' . DS . $random;
+		$src   = DOMAIN_CONTENT . 'user-profiles' . '/cover/' . $random;
 	}
 
 	if ( file_exists( $album ) ) {

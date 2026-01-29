@@ -158,7 +158,6 @@ class User_Profiles extends Plugin {
 			'avatar_height'       => 320,
 			'default_avatar'      => 'user',
 			'custom_avatar'       => [],
-			'cover_images'        => [],
 			'default_cover'       => [],
 			'cover_thumb_width'   => 320,
 			'cover_thumb_height'  => 320,
@@ -835,11 +834,6 @@ class User_Profiles extends Plugin {
 	}
 
 	// @return array
-	public function cover_images() {
-		return $this->getValue( 'cover_images' );
-	}
-
-	// @return array
 	public function default_cover() {
 		return $this->getValue( 'default_cover' );
 	}
@@ -999,6 +993,29 @@ class User_Profiles extends Plugin {
 	}
 
 	/**
+	 * Random cover image
+	 *
+	 * Get one random image from the array of selected
+	 * cover image uploads. If only one is selected then
+	 * the default cover will always be the same image.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return mixed Returns one filename or false.
+	 */
+	public function random_cover_image() {
+
+		$covers = $this->default_cover();
+		$image  = false;
+
+		if ( is_array( $covers ) && $covers ) {
+			$random = array_rand( $covers );
+			$image  = $covers[$random];
+		}
+		return $image;
+	}
+
+	/**
 	 * User cover image
 	 *
 	 * Gets the URL for a user cover image.
@@ -1014,8 +1031,7 @@ class User_Profiles extends Plugin {
 		// Access global variables.
 		global $site, $url;
 
-		// Get cover field value.
-		$cover = $this->getValue( 'cover_' . $name );
+		$cover  = $this->getValue( 'cover_' . $name );
 
 		if ( ! $cover || ! is_array( $cover ) ) {
 			return default_cover();
